@@ -1,3 +1,6 @@
+<!doctype html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Pirate's Ledger — Sea of Thieves Trading Companies</title>
@@ -210,6 +213,81 @@
   .almanac .entry b { display: block; color: var(--brass); margin-bottom: 3px; }
   .almanac .entry p { font-size: .92rem; margin: 0; color: var(--ink-soft); max-width: none; }
 
+  /* Deckhand handbook */
+  .handbook-section { margin-top: 42px; }
+  .handbook-heading {
+    display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px;
+    align-items: start; margin-bottom: 16px; padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .handbook-heading h3 {
+    margin: 0; font-family: 'Pirata One', Georgia, serif;
+    font-size: clamp(1.55rem, 3vw, 2rem); font-weight: 400; color: var(--brass);
+  }
+  .handbook-heading p { margin: 2px 0 0; max-width: 74ch; color: var(--ink-soft); font-size: .9rem; }
+  .tip-icon {
+    width: 34px; height: 34px; padding: 6px; color: var(--brass);
+    border: 1px solid var(--line); border-radius: 50%; background: var(--surface);
+    fill: none; stroke: currentColor; stroke-width: 1.5;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .icon-sprite {
+    position: absolute; width: 0; height: 0; overflow: hidden;
+  }
+  .tip-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 14px;
+  }
+  .deck-followups { margin-top: 14px; }
+  .tip-card {
+    min-width: 0; padding: 17px 18px; background: var(--surface);
+    border: 1px solid var(--line); border-left: 4px solid var(--tip-accent, var(--brass));
+    border-radius: 9px; box-shadow: var(--shadow);
+  }
+  .tip-card h4 {
+    margin: 0 0 5px; color: var(--tip-accent, var(--brass));
+    font-size: 1rem; line-height: 1.35;
+  }
+  .tip-card p { margin: 0; max-width: none; color: var(--ink-soft); font-size: .88rem; }
+  .tip-card .setting {
+    display: inline-block; margin-top: 8px; padding: 2px 7px;
+    color: var(--ink); background: var(--paper); border: 1px solid var(--line);
+    border-radius: 4px; font-size: .7rem; font-weight: 700; letter-spacing: .03em;
+  }
+  .visual-tip-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px; margin-top: 18px;
+  }
+  .visual-tip {
+    display: grid; grid-template-columns: 124px minmax(0, 1fr); min-width: 0;
+    overflow: hidden; background: var(--surface); border: 1px solid var(--line);
+    border-radius: 10px; box-shadow: var(--shadow);
+  }
+  .visual-tip img {
+    width: 124px; height: 100%; min-height: 156px; object-fit: cover;
+    cursor: zoom-in; background: #14242b;
+  }
+  .visual-tip img:hover { filter: brightness(1.08); }
+  .visual-tip img:focus-visible {
+    position: relative; z-index: 1; outline: 3px solid var(--brass-bright);
+    outline-offset: -3px;
+  }
+  .visual-tip img.contain { object-fit: contain; padding: 7px; }
+  .visual-tip__body { min-width: 0; padding: 15px 16px; }
+  .visual-tip h4 { margin: 0 0 5px; color: var(--brass); font-size: 1rem; line-height: 1.35; }
+  .visual-tip p { margin: 0; max-width: none; color: var(--ink-soft); font-size: .86rem; }
+  .caution-box {
+    margin-top: 18px; padding: 18px 20px; background: var(--tip-bg);
+    border: 1px dashed var(--seal); border-radius: 10px;
+  }
+  .caution-box h4 { margin: 0 0 8px; color: var(--seal); font-size: 1rem; }
+  .caution-box ul { margin: 0; padding-left: 20px; }
+  .caution-box li { margin: 5px 0; color: var(--ink-soft); font-size: .88rem; }
+  @media (max-width: 520px) {
+    .visual-tip { grid-template-columns: 96px minmax(0, 1fr); }
+    .visual-tip img { width: 96px; min-height: 142px; }
+  }
+
   /* Table */
   .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); box-shadow: var(--shadow); }
   table { border-collapse: collapse; width: 100%; min-width: 720px; font-size: .9rem; }
@@ -230,7 +308,6 @@
   }
 
   /* Wide screens: use the horizontal space */
-  .wrap { max-width: min(1600px, 96vw); margin: 0 auto; padding: 0 clamp(16px, 2vw, 40px) 80px; }
   @media (min-width: 1400px) {
     body { font-size: 18px; }
     .loot { grid-template-columns: repeat(auto-fill, minmax(128px, 1fr)); }
@@ -508,6 +585,7 @@
     width: 100%; height: auto; aspect-ratio: 16 / 10;
     display: block; object-fit: cover; background: #14242b;
   }
+  .event-shot img.event-marker-art { object-fit: contain; padding: 8px; }
   .event-shot figcaption {
     position: absolute; left: 8px; bottom: 8px;
     padding: 4px 7px; color: #f2ead2;
@@ -558,8 +636,34 @@
   }
 
 </style>
+</head>
+<body>
 
 <div class="wrap">
+
+<svg class="icon-sprite" aria-hidden="true">
+  <symbol id="icon-anchor" viewBox="0 0 24 24">
+    <circle cx="12" cy="5" r="2.5"/><path d="M12 7.5V20M5 12H2.5c.7 5.1 4.4 8 9.5 8s8.8-2.9 9.5-8H19M8.5 10.5h7"/>
+  </symbol>
+  <symbol id="icon-crate" viewBox="0 0 24 24">
+    <path d="M3 6.5 12 3l9 3.5v11L12 21l-9-3.5zM3 6.5l9 3.5 9-3.5M12 10v11M7 5l9 3.5"/>
+  </symbol>
+  <symbol id="icon-gear" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/>
+  </symbol>
+  <symbol id="icon-wave" viewBox="0 0 24 24">
+    <path d="M2 8c3 0 3 2 6 2s3-2 6-2 3 2 6 2h2M2 13c3 0 3 2 6 2s3-2 6-2 3 2 6 2h2M4 18c2 0 2 1 4 1s2-1 4-1"/>
+  </symbol>
+  <symbol id="icon-crossed" viewBox="0 0 24 24">
+    <path d="m4 3 8 8M7 2 2 7M20 3l-8 8M17 2l5 5M12 11v10M8 21h8"/>
+  </symbol>
+  <symbol id="icon-eye" viewBox="0 0 24 24">
+    <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/>
+  </symbol>
+  <symbol id="icon-route" viewBox="0 0 24 24">
+    <circle cx="5" cy="18" r="2"/><circle cx="19" cy="6" r="2"/><path d="M7 18h3c5 0 1-12 7-12"/>
+  </symbol>
+</svg>
 
 <nav class="pages-nav" aria-label="Guide sections" id="pages-nav">
   <div class="pages-nav__inner">
@@ -1422,7 +1526,7 @@
       <article class="event-card" style="--event:#dd713f">
         <div class="event-visuals">
           <figure class="event-shot">
-            <img src="guide-assets/events/ashen-winds-encounter.png" width="1400" height="788" loading="lazy" alt="Fiery red Ashen Winds tornado rising from an island ritual">
+            <img class="event-marker-art" src="guide-assets/events/ashen-winds-tornado-distant.png" width="1000" height="611" loading="lazy" alt="Ashen Winds tornado seen from far across the sea">
             <figcaption>Look for this</figcaption>
           </figure>
           <figure class="event-shot">
@@ -1552,6 +1656,73 @@
         <p>Reload at ammo crates. Eat cooked food. Block with sword. Never dig while holding loot — drop it, fight, pick up.</p>
       </article>
     </div>
+
+    <section class="handbook-section" aria-labelledby="fight-survival-title">
+      <div class="handbook-heading">
+        <svg class="tip-icon" aria-hidden="true"><use href="#icon-crossed"></use></svg>
+        <div>
+          <h3 id="fight-survival-title">Stay alive and control the deck</h3>
+          <p>Winning a ship fight is mostly movement, food, repairs, and hearing the boarder before they reach the ladder.</p>
+        </div>
+      </div>
+      <div class="tip-grid">
+        <article class="tip-card" style="--tip-accent:var(--seal)">
+          <h4>Heal before the next shot</h4>
+          <p>Dodge incoming fire, break line of sight, then eat. Keep strong food in your pockets and do not wait for the screen to turn fully red.</p>
+        </article>
+        <article class="tip-card" style="--tip-accent:var(--co-ma)">
+          <h4>Douse yourself with the bucket</h4>
+          <p>Fill your bucket, then use its secondary action to pour water over yourself. A firebomb's secondary action only offers it to another pirate.</p>
+        </article>
+        <article class="tip-card" style="--tip-accent:var(--teal)">
+          <h4>Listen for the ladder splash</h4>
+          <p>A swimmer grabbing your ladder makes a clear splash. Check both ladders, then use a blunderbuss or blunderbomb to knock the boarder away.</p>
+        </article>
+        <article class="tip-card">
+          <h4>Raise sails to tighten the turn</h4>
+          <p>Partly raise sails during a close fight. Your ship slows and turns more tightly, which keeps your cannons aimed without dropping anchor.</p>
+        </article>
+        <article class="tip-card" style="--tip-accent:var(--co-rb)">
+          <h4>Fire adds pressure, not a quick sink</h4>
+          <p>Fire forces a crew away from cannons and repairs, but one patch takes several minutes to make holes. A keg blast is what can open 4 hull holes at once.</p>
+        </article>
+        <article class="tip-card" style="--tip-accent:var(--co-oos)">
+          <h4>Keep their ship in your cannon arc</h4>
+          <p>Steer so your cannon side faces the enemy while their bow or stern faces you. Fixed deck landmarks vary by ship cosmetic, so watch the cannon itself.</p>
+        </article>
+      </div>
+
+      <div class="visual-tip-grid">
+        <article class="visual-tip">
+          <img class="zoomable-guide-image contain" src="guide-assets/tips/trident-of-dark-tides.png" width="1000" height="1000" loading="lazy" alt="Trident of Dark Tides held by a pirate" data-sub="Excellent against skeletons and other creatures">
+          <div class="visual-tip__body">
+            <h4>Save tridents for PvE</h4>
+            <p>Tridents deal about 2.5× damage to creatures. Charge a large bubble for groups and bosses. Light Shadow Skeletons first.</p>
+          </div>
+        </article>
+        <article class="visual-tip">
+          <img class="zoomable-guide-image contain" src="guide-assets/tips/gunpowder-skeleton.png" width="960" height="1300" loading="lazy" alt="Gunpowder Skeleton carrying a red keg" data-sub="Shoot the skeleton's legs to save the keg">
+          <div class="visual-tip__body">
+            <h4>Shoot keg skeletons in the legs</h4>
+            <p>Do not swing a cutlass at the barrel. Back away and shoot the skeleton's legs, back, or head if you want the keg to survive.</p>
+          </div>
+        </article>
+        <article class="visual-tip">
+          <img class="zoomable-guide-image" src="guide-assets/tips/horn-of-fair-winds.png" width="1000" height="563" loading="lazy" alt="Horn of Fair Winds" data-sub="Push boarders, fill sails, extinguish fire">
+          <div class="visual-tip__body">
+            <h4>Use the Horn for control</h4>
+            <p>The Horn of Fair Winds can fill sails, push pirates off deck, propel swimmers, soften a fall, and extinguish fire. Its charge is limited.</p>
+          </div>
+        </article>
+        <article class="visual-tip">
+          <img class="zoomable-guide-image contain" src="guide-assets/tips/trap.png" width="575" height="690" loading="lazy" alt="Sea of Thieves deployable trap" data-sub="Load it with a blunderbomb for knockback">
+          <div class="visual-tip__body">
+            <h4>Trap boarding routes</h4>
+            <p>Place a trap near the top of a ladder or stair route, then crouch to load a blunderbomb. It slows and knocks back, but no longer kills a full-health pirate alone.</p>
+          </div>
+        </article>
+      </div>
+    </section>
   </section>
 </section>
 
@@ -1699,20 +1870,103 @@
 
 <section class="page" id="page-tips" data-page="tips">
 <section class="block" id="tips">
-  <span class="eyebrow">The deckhand's almanac</span>
-  <h2>Ten tips that save new pirates</h2>
-  <div class="almanac">
-    <div class="entry"><b>1 · Start in Safer Seas</b><p>It's a private world — no other player crews. Perfect for learning to sail. Rewards are reduced (about 30% gold) and capped, so graduate to High Seas once you can dock without hitting the dock.</p></div>
-    <div class="entry"><b>2 · Sell before you log off</b><p>Loot on your ship disappears when your session ends. Ten minutes before quitting, sail to an outpost and cash out everything.</p></div>
-    <div class="entry"><b>3 · Sinking isn't the end</b><p>Your loot floats where you went down. You respawn with your ship nearby — sail back and fish it out with the harpoon before someone else does.</p></div>
-    <div class="entry"><b>4 · Raid every barrel</b><p>Wood planks, cannonballs and fruit live in barrels on every island and shipwreck. A full supply hold wins fights and survives storms.</p></div>
-    <div class="entry"><b>5 · Watch the horizon</b><p>Scan for sails every few minutes. Spotting a ship early is the difference between choosing a fight and being ambushed mid-dig.</p></div>
-    <div class="entry"><b>6 · Use the harpoon</b><p>The bow harpoons grab loot from the water, off beaches, even off other ships' decks. It's the biggest time-saver in the game.</p></div>
-    <div class="entry"><b>7 · Anchor is for emergencies</b><p>Stopping? Just raise the sails. The anchor stops you fast but takes ages to raise — a sitting duck's mistake. Save it for sharp turns and panic stops.</p></div>
-    <div class="entry"><b>8 · Eat like a pirate</b><p>Keep food in your pocket and eat mid-fight. Cooked meat heals the most; a pineapple is a decent bandage; a banana is barely a snack.</p></div>
-    <div class="entry"><b>9 · Befriend the mermaid</b><p>Stranded in open water? Look for the glowing mermaid statue-flare — she teleports you back to your ship, no swimming marathon required.</p></div>
-    <div class="entry"><b>10 · Loot is a hot potato</b><p>Holding treasure means holding no weapons. Pile loot at the beach, then load the ship in one guarded trip — don't wander an island with a chest on your shoulder.</p></div>
-  </div>
+  <span class="eyebrow">The deckhand's handbook</span>
+  <h2>Small habits that save ships</h2>
+  <p class="lede">Short, reliable tips grouped by the moment you need them. The caution section separates current mechanics from old tricks and rumors.</p>
+
+  <section class="handbook-section" aria-labelledby="basics-title">
+    <div class="handbook-heading">
+      <svg class="tip-icon" aria-hidden="true"><use href="#icon-eye"></use></svg>
+      <div>
+        <h3 id="basics-title">Before you leave the outpost</h3>
+        <p>Set up your ship and settings once. You will spend less time searching menus and barrels when trouble arrives.</p>
+      </div>
+    </div>
+    <div class="tip-grid">
+      <article class="tip-card"><h4>Learn in Safer Seas</h4><p>Use the private mode to practise sailing and docking. Move to High Seas when reduced rewards and progression start holding you back.</p></article>
+      <article class="tip-card" style="--tip-accent:var(--co-ma)"><h4>Buy the supplies you lack</h4><p>Merchant Alliance traders sell full fruit and wood crates for 3,500&nbsp;g, cannonball crates for 5,000&nbsp;g, and mixed storage crates for 5,000&nbsp;g.</p></article>
+      <article class="tip-card" style="--tip-accent:var(--teal)"><h4>Turn on tap-to-interact</h4><p>Set <b>Reduce Hold to Interact</b> to On. One press starts the timer, which makes repairs, sails, and collecting supplies easier.</p><span class="setting">Settings → Gameplay → Input</span></article>
+      <article class="tip-card" style="--tip-accent:var(--co-oos)"><h4>Use a wider field of view</h4><p>Try 90 to 110 so you can see more deck and nearby threats. Higher values can reduce performance on slower hardware.</p><span class="setting">Settings → Graphics → Field of View</span></article>
+      <article class="tip-card" style="--tip-accent:var(--co-gh)"><h4>Raise model detail for distant loot</h4><p>Set Model Detail and Texture Detail to at least Rare. Rare already reaches the maximum useful render distance for most loot.</p><span class="setting">Settings → Graphics</span></article>
+      <article class="tip-card" style="--tip-accent:var(--co-rb)"><h4>Count emissaries before sailing</h4><p>Small wooden ships on each Emissary Table show how many crews represent that company on the server. Reaper shrines show active Reapers.</p></article>
+    </div>
+  </section>
+
+  <section class="handbook-section" aria-labelledby="deck-title">
+    <div class="handbook-heading">
+      <svg class="tip-icon" aria-hidden="true"><use href="#icon-crate"></use></svg>
+      <div>
+        <h3 id="deck-title">Set up the deck for speed</h3>
+        <p>Put common supplies where the crew uses them. Keep the walking paths and interaction points clear.</p>
+      </div>
+    </div>
+    <div class="visual-tip-grid">
+      <article class="visual-tip">
+        <img class="zoomable-guide-image contain" src="guide-assets/tips/storage-crate.png" width="702" height="523" loading="lazy" alt="Storage Crate on a beach" data-sub="Carries food, planks, cannonballs, bait, and throwables">
+        <div class="visual-tip__body">
+          <h4>Keep one working crate near the helm</h4>
+          <p>Load food and planks into a storage crate near the wheel. Keep it beside the path, not on the wheel, capstan, or cannon controls.</p>
+        </div>
+      </article>
+      <article class="visual-tip">
+        <img class="zoomable-guide-image contain" src="guide-assets/tips/enchanted-merfruit.png" width="575" height="690" loading="lazy" alt="Enchanted Merfruit inventory card" data-sub="Suppresses your friendly mermaid for 2 minutes">
+        <div class="visual-tip__body">
+          <h4>Cook Merfruit for stealth</h4>
+          <p>Cook Merfruit for 20 seconds. Eating the enchanted version stops your friendly mermaid from appearing for 2 minutes, but gives no healing.</p>
+        </div>
+      </article>
+    </div>
+    <div class="tip-grid deck-followups">
+      <article class="tip-card"><h4>Sort cannon barrels by job</h4><p>Keep normal cannonballs and chainshots together. Put firebombs, blunderbombs, cursed balls, and flares in the other barrel so you can grab the right page quickly.</p></article>
+      <article class="tip-card"><h4>Protect the best food</h4><p>Keep pineapples and cooked meat in a storage crate tucked near the captain's chair or behind the wheel. Do not block controls or rely on it as a secret stash.</p></article>
+      <article class="tip-card"><h4>Raise sails instead of anchoring</h4><p>At normal stops, raise sails and coast in. If you must anchor for a fast stop, raise it again before leaving the ship so you can escape at once.</p></article>
+      <article class="tip-card"><h4>Raid every barrel</h4><p>Fill a storage crate from island barrels, sea forts, and floating supplies. Wood, food, and cannonballs matter more than treasure once a fight starts.</p></article>
+      <article class="tip-card"><h4>Use the harpoon for loading</h4><p>Gather loot into one beach pile, then harpoon it aboard. Keep a guard free because carrying treasure leaves you unable to fight.</p></article>
+      <article class="tip-card"><h4>Watch the horizon</h4><p>Scan for sails whenever you finish a task or return to the ship. An early sighting gives you time to sell, hide, or choose the angle of a fight.</p></article>
+    </div>
+  </section>
+
+  <section class="handbook-section" aria-labelledby="travel-title">
+    <div class="handbook-heading">
+      <svg class="tip-icon" aria-hidden="true"><use href="#icon-route"></use></svg>
+      <div>
+        <h3 id="travel-title">Travel, sinking, and saving loot</h3>
+        <p>Fast travel changes servers and destroys normal treasure. Use it before collecting loot, never as a way to save a haul.</p>
+      </div>
+    </div>
+    <div class="tip-grid">
+      <article class="tip-card" style="--tip-accent:var(--teal)"><h4>Dive only with an empty treasure deck</h4><p>A Voyage or Tall Tale dive moves you to a new server near its start. Normal treasure disappears, but resource crates stay. Diving also has an 8-minute cooldown.</p></article>
+      <article class="tip-card"><h4>Sell before logging off</h4><p>Treasure does not carry into the next session. Sell it. Burying creates a map only for the current server and session.</p></article>
+      <article class="tip-card"><h4>Recover a recent sink</h4><p>Your loot and map bundle float where the ship sank for a short time. Mark the area, sail back, and harpoon quickly before another crew finds it.</p></article>
+      <article class="tip-card"><h4>Read mermaids correctly</h4><p>Your mermaid appears when you are far from your ship or after it sinks. A mermaid without blue smoke usually belongs to another pirate nearby.</p></article>
+      <article class="tip-card"><h4>Crouch to hide your name</h4><p>Crouching hides your nameplate and quiets footsteps. Disguises, hide emotes, and marked hanging points also conceal your name, but no spot stays secret forever.</p></article>
+      <article class="tip-card"><h4>Post buried maps if you are leaving</h4><p>A personal buried-treasure map does not survive logout. Post it to an Outpost or Seapost Quest Board if you want another crew to find it after you leave.</p></article>
+    </div>
+  </section>
+
+  <section class="handbook-section" aria-labelledby="caution-title">
+    <div class="handbook-heading">
+      <svg class="tip-icon" aria-hidden="true"><use href="#icon-wave"></use></svg>
+      <div>
+        <h3 id="caution-title">Situational tricks and old rumors</h3>
+        <p>These can work in narrow cases, but they are poor habits for a beginner. Patches, ship type, and server position change the result.</p>
+      </div>
+    </div>
+    <div class="tip-grid">
+      <article class="tip-card" style="--tip-accent:var(--seal)"><h4>Skull of Siren Song respawns</h4><p>Joining only gives a closer ship respawn when you sink near a Siren Song objective or quest item. It is not a general close-respawn switch.</p></article>
+      <article class="tip-card" style="--tip-accent:var(--seal)"><h4>Keg traps can kill both crews</h4><p>A trap loaded with a blunderbomb can trigger a nearby keg. Use that only on land or an enemy deck. Never keep the setup beside your own ladder.</p></article>
+      <article class="tip-card" style="--tip-accent:var(--seal)"><h4>Loose crates are weak cover</h4><p>A crate may catch a harpoon by accident, but it does not reliably protect a cannoneer. Keep cannon access clear and dodge the harpoon instead.</p></article>
+    </div>
+    <div class="caution-box">
+      <h4>Do not build your play around these</h4>
+      <ul>
+        <li>Double-tapping reload, forcing a black screen against a moved cannon, and exact lamp or sail-rope aiming lines are inconsistent animation or collision tricks.</li>
+        <li>The canopy edge is a known hiding place, not a best spot. Crouching, hanging, and moving between cover are more reliable.</li>
+        <li>Burying loot before logout does not save it for your next session. Sell first.</li>
+        <li>Fire near a captain's table does not instantly open 4 holes. Fire is slow pressure. A nearby keg explosion causes the heavy hull damage.</li>
+      </ul>
+    </div>
+  </section>
 </section>
 
 </section>
@@ -1830,7 +2084,7 @@
     });
   });
 
-  document.querySelectorAll('.fight-card .shots img').forEach(function (img) {
+  document.querySelectorAll('.fight-card .shots img, .zoomable-guide-image').forEach(function (img) {
     img.tabIndex = 0;
     img.setAttribute('role', 'button');
     img.setAttribute('aria-label', 'Enlarge ' + (img.alt || 'fight reference'));
@@ -1838,7 +2092,7 @@
       return {
         src: img.getAttribute('data-preview') || img.src,
         name: img.alt || 'Fight reference',
-        sub: 'Enemy and weapon reference'
+        sub: img.getAttribute('data-sub') || 'Enemy and weapon reference'
       };
     });
     img.addEventListener('keydown', function (e) {
@@ -1972,3 +2226,5 @@
 })();
 
 </script>
+</body>
+</html>
