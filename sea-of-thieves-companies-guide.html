@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -15,7 +15,7 @@
     --paper: #e9e5d6;
     --paper-deep: #dfd9c5;
     --surface: #f2efe3;
-    --ink: #24333a;                                         
+    --ink: #24333a;
     --ink-soft: #51625f;
     --line: #c8c1a9;
     --brass: #8a6a14;
@@ -177,6 +177,7 @@
   .co-body > p { font-size: .98rem; margin-bottom: .8em; }
 
   .loot-label { font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--co); font-weight: 700; margin: 6px 0 10px; }
+  .co > .loot-label { padding-right: 28px; padding-left: 28px; }
   .loot-label small { letter-spacing: .05em; text-transform: none; color: var(--ink-soft); font-weight: 400; }
   .loot { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 10px; padding: 0 28px 8px; margin: 0; list-style: none; }
   .loot li {
@@ -195,6 +196,7 @@
   }
   .tip b { color: var(--co); letter-spacing: .12em; text-transform: uppercase; font-size: .72rem; display: block; margin-bottom: 3px; }
   .tip p { margin: 0; max-width: none; }
+  .tip.compact { margin: 12px 0 6px; }
 
   /* Two-up bonus cards */
   .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
@@ -521,6 +523,9 @@
     margin: 0 auto 24px; max-width: 76ch; color: var(--ink-soft);
     text-align: center; font-size: .84rem;
   }
+  .emissary-intro { max-width: 76ch; }
+  .subsection-title { margin-top: 36px; text-align: center; }
+  .almanac-spaced { margin-top: 18px; }
   .emissary-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 16px; margin: 24px 0;
@@ -750,7 +755,7 @@
         <p>The classic pirate fantasy: they sell voyages with X-marks-the-spot maps, riddles, and vault keys, and they buy back anything shiny you dig up. The simplest loop in the game — map, island, chest, outpost — which is why it's the best first company.</p>
       </div>
     </div>
-    <p class="loot-label" style="padding: 0 28px">Loot they buy <small>· low → high · wiki base prices</small></p>
+    <p class="loot-label">Loot they buy <small>· low → high · wiki base prices</small></p>
         <ul class="loot">
 <li><img data-preview="guide-assets/loot/ancient-goblet.webp" src="guide-assets/loot/ancient-goblet.webp" alt="Ancient Goblet" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Ancient Goblet</span>
@@ -872,7 +877,7 @@
         <p>Mystics who read the memories of the dead. Their bounty voyages send you to hunt named skeleton captains and their crews; bring back the glowing skulls they drop. Skulls also rain out of skeleton forts, ghost fleets and ashen lords — all of it sells here.</p>
       </div>
     </div>
-    <p class="loot-label" style="padding: 0 28px">Loot they buy <small>· low → high · wiki base prices</small></p>
+    <p class="loot-label">Loot they buy <small>· low → high · wiki base prices</small></p>
         <ul class="loot">
 <li><img data-preview="guide-assets/loot/foul-bounty-skull.webp" src="guide-assets/loot/foul-bounty-skull.webp" alt="Foul Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Foul Bounty Skull</span>
@@ -973,7 +978,7 @@
         <p>The "honest trader" company. Their voyages are deliveries: ferry cargo before the deadline (a mint-condition cargo crate pays 700&nbsp;g), catch and cage live animals, or recover lost shipments from the seabed. They also buy commodity crates found (or stolen) around the world, and <span class="iref" data-ref="#img-gunpowder" data-cap="Gunpowder Barrel" data-sub="100–200 g — explodes if shot or dropped">gunpowder barrels</span> — handle those gently.</p>
       </div>
     </div>
-    <p class="loot-label" style="padding: 0 28px">Loot they buy <small>· low → high · wiki base prices</small></p>
+    <p class="loot-label">Loot they buy <small>· low → high · wiki base prices</small></p>
         <ul class="loot">
 <li><img data-preview="guide-assets/loot/chicken-caged.webp" src="guide-assets/loot/chicken-caged.webp" alt="Chicken (caged)" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Chicken (caged)</span>
@@ -1058,7 +1063,7 @@
         <p>Merrick's family of hunters buys what you catch and cook: every species of fish, plus meat from sharks, snakes, pigs, chickens, krakens and megalodons. Cooking roughly <b>1.5×</b> a fish's price, and trophy (oversized) fish are worth <b>2.5×</b> their normal kin — so a cooked trophy of a rare colour is serious money.</p>
       </div>
     </div>
-    <p class="loot-label" style="padding: 0 28px">Loot they buy <small>· low → high · wiki base prices</small></p>
+    <p class="loot-label">Loot they buy <small>· low → high · wiki base prices</small></p>
         <ul class="loot">
 <li><img data-preview="guide-assets/loot/treacherous-plunder.webp" src="guide-assets/loot/treacherous-plunder.webp" alt="Treacherous Plunder" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Treacherous Plunder</span>
@@ -1146,7 +1151,7 @@
         <p>The menacing masked cult of piracy itself. The Servant of the Flame matches any other company's price, so <b>almost every kind of loot</b> — including treasure you stole from other crews, and their torn-down emissary flags — can be sold here in one pile. The catch: everyone knows where reapers sell, so the hideout is the most dangerous dock on the sea.</p>
       </div>
     </div>
-    <p class="loot-label" style="padding: 0 28px">Loot they buy <small>· low → high · wiki base prices</small></p>
+    <p class="loot-label">Loot they buy <small>· low → high · wiki base prices</small></p>
         <ul class="loot">
 <li><img data-preview="guide-assets/loot/reaper-s-chest.webp" src="guide-assets/loot/reaper-s-chest.webp" alt="Reaper's Chest" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Reaper's Chest</span>
@@ -1194,7 +1199,7 @@
         <p>The Pirate Lord's own company. (The <b>tavern</b>, if you're brand new, is the pub building at every outpost — it's where you first spawn, where you buy grog, and where the Mysterious Stranger leans in the corner.) Reach rank 50 with any three companies to become a <b>Pirate Legend</b>, unlock the hidden hideout under the tavern, and take on legendary voyages for glowing green Athena treasure. Found Athena loot before you're a legend — say, off a sinking legend's ship? The Stranger will still buy it.</p>
       </div>
     </div>
-    <p class="loot-label" style="padding: 0 28px">Loot they buy <small>· low → high · wiki base prices</small></p>
+    <p class="loot-label">Loot they buy <small>· low → high · wiki base prices</small></p>
         <ul class="loot">
 <li><img data-preview="guide-assets/loot/chalice-of-ancient-fortune.webp" src="guide-assets/loot/chalice-of-ancient-fortune.webp" alt="Chalice of Ancient Fortune" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Chalice of Ancient Fortune</span>
@@ -1267,7 +1272,7 @@
           <h3 class="co-name">The Sovereigns</h3>
           <p class="where"><b>Where:</b> the tall hut with a cargo lift on the second dock of every outpost.</p>
           <p>Not really a company — more like valets for pirates who own a <b>captained ship</b> (buy one with gold from the Pirate Menu; a sloop costs 250,000&nbsp;g). Harpoon your loot onto their lift and they sell it to the right companies for you, fish included. Same gold, same reputation, none of the walking. They won't take cargo-run deliveries, Reaper loot or contraband.</p>
-          <div class="tip" style="margin: 12px 0 6px"><b>Deckhand's tip</b><p>Once you can afford a ship, buy it. Selling in one spot instead of three saves whole minutes at every outpost — minutes another crew could use to rob you.</p></div>
+          <div class="tip compact"><b>Deckhand's tip</b><p>Once you can afford a ship, buy it. Selling in one spot instead of three saves whole minutes at every outpost — minutes another crew could use to rob you.</p></div>
         </div>
       </div>
     </article>
@@ -1283,7 +1288,7 @@
           <p>The newest faction, added late 2025. <b>What's contraband?</b> A separate family of black-market loot — black powder barrels, smuggler rum, stolen paintings, incriminating ship logs — found on smuggling runs, in buried smugglers' caches, and during heist events. <b>No other company will buy it</b>, not even the Reapers; only League reps like Sea-Cloak Solomon pay for it, in pure gold (no reputation ranks, no emissary flags).</p>
         </div>
       </div>
-      <p class="loot-label" style="padding: 0 20px">Contraband they buy <small>· low → high · wiki base prices</small></p>
+      <p class="loot-label">Contraband they buy <small>· low → high · wiki base prices</small></p>
           <ul class="loot">
 <li><img data-preview="guide-assets/loot/smuggler-contraband-crates.webp" src="guide-assets/loot/smuggler-contraband-crates.webp" alt="Smuggler contraband crates" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Smuggler contraband crates</span>
@@ -1387,8 +1392,6 @@
       </article>
     </div>
   </section>
-</section>
-
 </section>
 
 <section class="page" id="page-events" data-page="events">
@@ -1730,9 +1733,9 @@
 <section class="block" id="emissaries">
   <span class="eyebrow">High Seas · risk for reward</span>
   <h2>Emissaries: build the flag before you sell</h2>
-  <p class="lede" style="max-width:76ch">Buy a company's <span class="iref" data-ref="#img-licence" data-cap="Emissary Licence" data-sub="One-time 20,000 g purchase for most companies">Emissary Licence</span> once, then vote at its table whenever you start a High Seas session. Company work raises the flag from Grade&nbsp;I to V. A taller flag pays more, but tells other crews you probably have loot.</p>
+  <p class="lede emissary-intro">Buy a company's <span class="iref" data-ref="#img-licence" data-cap="Emissary Licence" data-sub="One-time 20,000 g purchase for most companies">Emissary Licence</span> once, then vote at its table whenever you start a High Seas session. Company work raises the flag from Grade&nbsp;I to V. A taller flag pays more, but tells other crews you probably have loot.</p>
 
-  <div class="grade-track" aria-label="Standard company emissary reward multipliers">
+  <div class="grade-track" role="group" aria-label="Standard company emissary reward multipliers">
     <div class="grade"><small>Grade I</small><strong>1×</strong><span>Base reward</span></div>
     <div class="grade"><small>Grade II</small><strong>1.33×</strong><span>+33%</span></div>
     <div class="grade"><small>Grade III</small><strong>1.67×</strong><span>+67%</span></div>
@@ -1833,7 +1836,7 @@
       </figure>
     </div>
 
-    <h2 style="text-align:center;margin-top:36px">Click an outpost</h2>
+    <h2 class="subsection-title">Click an outpost</h2>
     <p class="lede">Every sell-town. Tap a card for a larger photo.</p>
     <div class="outpost-grid" id="outpost-grid">
       <button type="button" class="outpost-btn" data-outpost="sanctuary" aria-label="Sanctuary Outpost">
@@ -1860,7 +1863,7 @@
       </button>
     </div>
 
-    <div class="almanac" style="margin-top:18px">
+    <div class="almanac almanac-spaced">
       <div class="entry"><b>Seaposts</b><p>Tiny stilt shops — <span class="iref" data-ref="#img-seapost" data-cap="A seapost">see a seapost</span>. Hunter's Call sells here. Zoom in between outposts.</p></div>
       <div class="entry"><b>Reaper ships</b><p>A ship with a <span class="iref" data-ref="#img-rflag" data-cap="Reaper's Bones emissary flag">red Reaper emissary flag</span> shows on everyone's map. Sail away until you're ready.</p></div>
       <div class="entry"><b>Dig spots</b><p>X marks live on the quest parchment, not the world map. Bring a <span class="iref" data-ref="#img-shovel" data-cap="Shovel">shovel</span>.</p></div>
@@ -1978,21 +1981,21 @@
 
 <div class="assets" aria-hidden="true">
   <img id="img-goldskel" src="guide-assets/fight/gold-skeleton.jpg" alt="gold_skel" width="640" height="610">
-  
+
   <img id="img-blunderbomb" src="guide-assets/tips/blunderbomb.jpg" alt="blunderbomb" width="640" height="712">
-  
+
   <img id="img-eor" src="guide-assets/fight/eye-of-reach.jpg" alt="eor" width="640" height="640">
-  
+
   <img id="img-cutlass" src="guide-assets/fight/cutlass.jpg" alt="cutlass" width="640" height="640">
-  
+
   <img id="img-bucket" src="guide-assets/tips/bucket.jpg" alt="bucket" width="640" height="640">
-  
+
   <img id="img-firebomb" src="guide-assets/fight/firebomb.jpg" alt="firebomb" width="579" height="696">
-  
+
   <img id="img-blunder" src="guide-assets/fight/blunderbuss.jpg" alt="blunder" width="640" height="640">
-  
+
   <img id="img-pistol" src="guide-assets/tips/pistol.jpg" alt="pistol" width="200" height="200">
-  
+
   <img id="img-maptable" src="guide-assets/quests/merchant-cargo-crate.jpg" alt="Map table" width="900" height="506">
   <img id="img-shovel" src="guide-assets/tips/shovel.jpg" alt="Shovel" width="200" height="200">
   <img id="img-lantern" src="guide-assets/fight/lantern.jpg" alt="Lantern" width="200" height="200">
@@ -2003,13 +2006,13 @@
   <img id="img-fishing" src="guide-assets/quests/fishing-rod-from-sea-of-thieves.jpg" alt="Fishing Rod" width="200" height="200">
   <img id="img-cargo" src="guide-assets/quests/merchant-cargo-crate.jpg" alt="Cargo crate" width="900" height="506">
   <img id="img-windflag" src="guide-assets/tips/windflag.jpg" alt="Ship flag" width="640" height="594">
-  
+
   <img id="img-tavern" src="guide-assets/tips/tavern.jpg" alt="" width="420" height="235">
   <img id="img-seapost" src="guide-assets/tips/seapost.jpg" alt="" width="420" height="236">
   <img id="img-licence" src="guide-assets/tips/licence.png" alt="" width="176" height="176">
 </div>
 
-<div id="pop" hidden><img alt=""><div class="cap"><b></b><span></span></div></div>
+<div id="pop" hidden><img src="guide-assets/tips/tavern.jpg" width="420" height="235" alt=""><div class="cap"><b></b><span></span></div></div>
 
 <script>
 (function () {
@@ -2045,6 +2048,7 @@
     clearTimeout(showTimer);
     showTimer = setTimeout(function () {
       popImg.src = src;
+      popImg.alt = name;
       popName.textContent = name;
       popSub.textContent = sub;
       popSub.style.display = sub ? '' : 'none';
@@ -2197,6 +2201,7 @@
       var pop = document.getElementById('pop');
       if (!pop || !imgEl) return;
       pop.querySelector('img').src = imgEl.src;
+      pop.querySelector('img').alt = imgEl.alt;
       pop.querySelector('.cap b').textContent = title ? title.textContent : imgEl.alt;
       var subEl = pop.querySelector('.cap span');
       subEl.textContent = sub ? sub.textContent : '';
