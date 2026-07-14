@@ -3,647 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10242b">
 <title>The Pirate's Ledger — Sea of Thieves Trading Companies</title>
-<style>
-  @font-face {
-    font-family: 'Pirata One';
-    src: url('guide-assets/fonts/pirata-one.woff2') format('woff2');
-    font-weight: 400; font-style: normal; font-display: swap;
-  }
-
-  :root {
-    --paper: #e9e5d6;
-    --paper-deep: #dfd9c5;
-    --surface: #f2efe3;
-    --ink: #24333a;
-    --ink-soft: #51625f;
-    --line: #c8c1a9;
-    --brass: #8a6a14;
-    --brass-bright: #a9821c;
-    --teal: #1d6a75;
-    --tip-bg: #e4ddc4;
-    --seal: #7a2f26;
-    --co-gh: #8a6a14; --co-oos: #6d4fa3; --co-ma: #22648f; --co-hc: #2e7d5b;
-    --co-af: #1d8a72; --co-rb: #a33227; --co-sov: #96562a; --co-sl: #5c6134;
-    --shadow: 0 1px 3px rgba(36,51,58,.14), 0 8px 24px rgba(36,51,58,.08);
-    --pop-shadow: 0 6px 28px rgba(36,51,58,.3);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --paper: #101d23;
-      --paper-deep: #0b161b;
-      --surface: #17282f;
-      --ink: #e2dcc6;
-      --ink-soft: #9aa598;
-      --line: #2b4049;
-      --brass: #d3a43c;
-      --brass-bright: #e3b954;
-      --teal: #55b7c2;
-      --tip-bg: #1d3138;
-      --seal: #d97b6c;
-      --co-gh: #d3a43c; --co-oos: #ab86e0; --co-ma: #5aa5d8; --co-hc: #5cba8e;
-      --co-af: #45c2a3; --co-rb: #e06153; --co-sov: #cd8551; --co-sl: #a8ae67;
-      --shadow: 0 1px 3px rgba(0,0,0,.5), 0 10px 28px rgba(0,0,0,.35);
-      --pop-shadow: 0 8px 32px rgba(0,0,0,.65);
-    }
-  }
-  :root[data-theme="light"] {
-    --paper: #e9e5d6; --paper-deep: #dfd9c5; --surface: #f2efe3; --ink: #24333a;
-    --ink-soft: #51625f; --line: #c8c1a9; --brass: #8a6a14; --brass-bright: #a9821c;
-    --teal: #1d6a75; --tip-bg: #e4ddc4; --seal: #7a2f26;
-    --co-gh: #8a6a14; --co-oos: #6d4fa3; --co-ma: #22648f; --co-hc: #2e7d5b;
-    --co-af: #1d8a72; --co-rb: #a33227; --co-sov: #96562a; --co-sl: #5c6134;
-    --shadow: 0 1px 3px rgba(36,51,58,.14), 0 8px 24px rgba(36,51,58,.08);
-    --pop-shadow: 0 6px 28px rgba(36,51,58,.3);
-  }
-  :root[data-theme="dark"] {
-    --paper: #101d23; --paper-deep: #0b161b; --surface: #17282f; --ink: #e2dcc6;
-    --ink-soft: #9aa598; --line: #2b4049; --brass: #d3a43c; --brass-bright: #e3b954;
-    --teal: #55b7c2; --tip-bg: #1d3138; --seal: #d97b6c;
-    --co-gh: #d3a43c; --co-oos: #ab86e0; --co-ma: #5aa5d8; --co-hc: #5cba8e;
-    --co-af: #45c2a3; --co-rb: #e06153; --co-sov: #cd8551; --co-sl: #a8ae67;
-    --shadow: 0 1px 3px rgba(0,0,0,.5), 0 10px 28px rgba(0,0,0,.35);
-    --pop-shadow: 0 8px 32px rgba(0,0,0,.65);
-  }
-
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  body {
-    margin: 0; background: var(--paper); color: var(--ink);
-    font-family: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
-    font-size: 17px; line-height: 1.65;
-  }
-  .wrap { max-width: min(1600px, 96vw); margin: 0 auto; padding: 0 clamp(16px, 2vw, 40px) 80px; }
-
-  h1, h2, .co-name, .step b { font-family: 'Pirata One', Georgia, serif; font-weight: 400; letter-spacing: .02em; }
-  h1 { font-size: clamp(2.6rem, 7vw, 4.4rem); line-height: 1.02; margin: .2em 0 .15em; text-wrap: balance; }
-  h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); margin: 0 0 .35em; text-wrap: balance; }
-  p { margin: 0 0 1em; max-width: 68ch; }
-  a { color: var(--teal); }
-  img { max-width: 100%; display: block; }
-
-  .eyebrow {
-    font-family: Georgia, serif; font-size: .72rem; letter-spacing: .22em;
-    text-transform: uppercase; color: var(--brass); font-weight: 700;
-  }
-
-  /* Hover-preview trigger for items mentioned in text */
-  .iref { border-bottom: 1px dotted var(--brass); cursor: help; }
-
-  /* Floating preview card */
-  #pop {
-    position: fixed; z-index: 60; width: min(520px, 92vw);
-    background: var(--surface); border: 1px solid var(--brass); border-radius: 12px;
-    box-shadow: var(--pop-shadow); padding: 12px 12px 10px; pointer-events: none;
-    opacity: 0; transition: opacity .14s ease;
-  }
-  #pop.on { opacity: 1; }
-  #pop img {
-    width: 100%; max-height: min(480px, 70vh); object-fit: contain; border-radius: 8px;
-    background: #101d23; image-rendering: auto;
-  }
-  #pop .cap { padding: 7px 4px 2px; }
-  #pop .cap b { display: block; font-size: .88rem; line-height: 1.3; }
-  #pop .cap span { font-size: .78rem; color: var(--brass); font-weight: 700; font-variant-numeric: tabular-nums; }
-  @media (prefers-reduced-motion: reduce) { #pop { transition: none; } }
-  .assets { display: none; }
-
-  /* Masthead */
-  header { padding: 56px 0 8px; text-align: center; }
-  header .sub { color: var(--ink-soft); font-style: italic; font-size: 1.12rem; max-width: 56ch; margin: 0 auto 14px; }
-  .meta-line { font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); }
-  .rule { display: flex; align-items: center; gap: 14px; margin: 26px auto; max-width: 520px; color: var(--brass); }
-  .rule::before, .rule::after { content: ""; flex: 1; border-top: 1px solid var(--line); }
-  .rule svg { flex: none; }
-
-  /* Golden rule callout */
-  .callout {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
-    box-shadow: var(--shadow); padding: 26px 30px; margin: 34px 0;
-  }
-  .callout .big { font-size: 1.25rem; font-style: italic; margin: 0; max-width: none; }
-  .callout .big strong { color: var(--brass); font-style: normal; }
-
-  /* Steps */
-  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 22px 0 8px; }
-  .step {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
-    padding: 18px 18px 16px; position: relative;
-  }
-  .step b { display: block; font-size: 1.35rem; margin-bottom: .25em; color: var(--brass); }
-  .step p { font-size: .95rem; margin: 0; color: var(--ink-soft); }
-  .step .n {
-    position: absolute; top: 14px; right: 16px; font-size: .78rem; color: var(--ink-soft);
-    font-variant-numeric: tabular-nums; letter-spacing: .1em;
-  }
-
-  /* Company nav */
-  nav.chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 30px 0 10px; }
-  nav.chips a {
-    text-decoration: none; color: var(--ink); font-size: .85rem; letter-spacing: .04em;
-    border: 1px solid var(--line); border-left: 4px solid var(--co, var(--brass));
-    background: var(--surface); border-radius: 999px; padding: 6px 14px;
-  }
-  nav.chips a:hover, nav.chips a:focus-visible { border-color: var(--co, var(--brass)); outline: none; }
-
-  section.block { margin-top: 64px; }
-  section.block > .eyebrow { display: block; text-align: center; margin-bottom: 6px; }
-  section.block > h2 { text-align: center; }
-  section.block > .lede { text-align: center; margin: 0 auto 10px; color: var(--ink-soft); }
-  .price-note { text-align: center; font-size: .85rem; color: var(--ink-soft); font-style: italic; margin: 0 auto 20px; max-width: 68ch; }
-
-  /* Company cards */
-  .co {
-    background: var(--surface); border: 1px solid var(--line); border-top: 5px solid var(--co);
-    border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; margin: 30px 0;
-    scroll-margin-top: 20px;
-  }
-  .co-head { display: grid; grid-template-columns: minmax(260px, 46%) 1fr; }
-  .co-head .shot { position: relative; min-height: 240px; }
-  .co-head .shot img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
-  .co-head .shot .credit {
-    position: absolute; bottom: 0; right: 0; font-size: .62rem; letter-spacing: .06em;
-    background: rgba(10,20,24,.62); color: #e8e2cf; padding: 2px 8px; border-top-left-radius: 6px;
-  }
-  .co-body { padding: 24px 28px 20px; }
-  .badge {
-    display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
-    color: var(--paper); background: var(--co); border-radius: 3px; padding: 3px 9px; margin-bottom: 10px;
-  }
-  .co-name { font-size: clamp(1.9rem, 3.5vw, 2.5rem); line-height: 1; margin: 0 0 6px; color: var(--co); }
-  .where { font-size: .92rem; color: var(--ink-soft); margin-bottom: 12px; }
-  .where b { color: var(--ink); font-weight: 700; }
-  .co-body > p { font-size: .98rem; margin-bottom: .8em; }
-
-  .loot-label { font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--co); font-weight: 700; margin: 6px 0 10px; }
-  .co > .loot-label { padding-right: 28px; padding-left: 28px; }
-  .loot-label small { letter-spacing: .05em; text-transform: none; color: var(--ink-soft); font-weight: 400; }
-  .loot { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 10px; padding: 0 28px 8px; margin: 0; list-style: none; }
-  .loot li {
-    background: var(--paper); border: 1px solid var(--line); border-radius: 8px;
-    padding: 10px 8px 9px; text-align: center; cursor: zoom-in;
-  }
-  .loot li:hover { border-color: var(--co); }
-  .loot img { width: 68px; height: 68px; object-fit: contain; margin: 0 auto 6px; }
-  .loot .nm { display: block; font-size: .74rem; line-height: 1.3; font-weight: 700; }
-  .loot .price { display: block; font-size: .73rem; line-height: 1.35; color: var(--brass); font-weight: 700; font-variant-numeric: tabular-nums; }
-  .loot .note { display: block; font-size: .67rem; line-height: 1.35; color: var(--ink-soft); font-style: italic; }
-
-  .tip {
-    margin: 16px 28px 24px; background: var(--tip-bg); border: 1px dashed var(--co);
-    border-radius: 8px; padding: 13px 18px; font-size: .93rem;
-  }
-  .tip b { color: var(--co); letter-spacing: .12em; text-transform: uppercase; font-size: .72rem; display: block; margin-bottom: 3px; }
-  .tip p { margin: 0; max-width: none; }
-  .tip.compact { margin: 12px 0 6px; }
-
-  /* Two-up bonus cards */
-  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  .duo .co { margin: 0; }
-  .duo .co-head { grid-template-columns: 1fr; }
-  .duo .shot { min-height: 200px; max-height: 230px; position: relative; }
-  .duo .shot img { position: absolute; }
-  .duo .loot { padding: 0 20px 8px; }
-  .duo .tip { margin: 14px 20px 20px; }
-  .duo .co-body { padding: 22px 20px 6px; }
-  .duo .loot-label { padding: 0 20px !important; }
-
-  /* Tips almanac */
-  .almanac { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
-  .almanac .entry { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; }
-  .almanac .entry b { display: block; color: var(--brass); margin-bottom: 3px; }
-  .almanac .entry p { font-size: .92rem; margin: 0; color: var(--ink-soft); max-width: none; }
-
-  /* Deckhand handbook */
-  .handbook-section { margin-top: 42px; }
-  .handbook-heading {
-    display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px;
-    align-items: start; margin-bottom: 16px; padding-bottom: 12px;
-    border-bottom: 1px solid var(--line);
-  }
-  .handbook-heading h3 {
-    margin: 0; font-family: 'Pirata One', Georgia, serif;
-    font-size: clamp(1.55rem, 3vw, 2rem); font-weight: 400; color: var(--brass);
-  }
-  .handbook-heading p { margin: 2px 0 0; max-width: 74ch; color: var(--ink-soft); font-size: .9rem; }
-  .tip-icon {
-    width: 34px; height: 34px; padding: 6px; color: var(--brass);
-    border: 1px solid var(--line); border-radius: 50%; background: var(--surface);
-    fill: none; stroke: currentColor; stroke-width: 1.5;
-    stroke-linecap: round; stroke-linejoin: round;
-  }
-  .icon-sprite {
-    position: absolute; width: 0; height: 0; overflow: hidden;
-  }
-  .tip-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 14px;
-  }
-  .deck-followups { margin-top: 14px; }
-  .tip-card {
-    min-width: 0; padding: 17px 18px; background: var(--surface);
-    border: 1px solid var(--line); border-left: 4px solid var(--tip-accent, var(--brass));
-    border-radius: 9px; box-shadow: var(--shadow);
-  }
-  .tip-card h4 {
-    margin: 0 0 5px; color: var(--tip-accent, var(--brass));
-    font-size: 1rem; line-height: 1.35;
-  }
-  .tip-card p { margin: 0; max-width: none; color: var(--ink-soft); font-size: .88rem; }
-  .tip-card .setting {
-    display: inline-block; margin-top: 8px; padding: 2px 7px;
-    color: var(--ink); background: var(--paper); border: 1px solid var(--line);
-    border-radius: 4px; font-size: .7rem; font-weight: 700; letter-spacing: .03em;
-  }
-  .visual-tip-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 16px; margin-top: 18px;
-  }
-  .visual-tip {
-    display: grid; grid-template-columns: 124px minmax(0, 1fr); min-width: 0;
-    overflow: hidden; background: var(--surface); border: 1px solid var(--line);
-    border-radius: 10px; box-shadow: var(--shadow);
-  }
-  .visual-tip img {
-    width: 124px; height: 100%; min-height: 156px; object-fit: cover;
-    cursor: zoom-in; background: #14242b;
-  }
-  .visual-tip img:hover { filter: brightness(1.08); }
-  .visual-tip img:focus-visible {
-    position: relative; z-index: 1; outline: 3px solid var(--brass-bright);
-    outline-offset: -3px;
-  }
-  .visual-tip img.contain { object-fit: contain; padding: 7px; }
-  .visual-tip__body { min-width: 0; padding: 15px 16px; }
-  .visual-tip h4 { margin: 0 0 5px; color: var(--brass); font-size: 1rem; line-height: 1.35; }
-  .visual-tip p { margin: 0; max-width: none; color: var(--ink-soft); font-size: .86rem; }
-  .caution-box {
-    margin-top: 18px; padding: 18px 20px; background: var(--tip-bg);
-    border: 1px dashed var(--seal); border-radius: 10px;
-  }
-  .caution-box h4 { margin: 0 0 8px; color: var(--seal); font-size: 1rem; }
-  .caution-box ul { margin: 0; padding-left: 20px; }
-  .caution-box li { margin: 5px 0; color: var(--ink-soft); font-size: .88rem; }
-  @media (max-width: 520px) {
-    .visual-tip { grid-template-columns: 96px minmax(0, 1fr); }
-    .visual-tip img { width: 96px; min-height: 142px; }
-  }
-
-  /* Table */
-  .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); box-shadow: var(--shadow); }
-  table { border-collapse: collapse; width: 100%; min-width: 720px; font-size: .9rem; }
-  th, td { text-align: left; padding: 11px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
-  th { font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-soft); }
-  tr:last-child td { border-bottom: none; }
-  td.cname { font-weight: 700; white-space: nowrap; }
-  td.cname::before { content: "●"; margin-right: 8px; color: var(--co); }
-
-  footer { margin-top: 70px; padding-top: 22px; border-top: 1px solid var(--line); font-size: .8rem; color: var(--ink-soft); }
-  footer p { max-width: none; }
-
-  @media (max-width: 720px) {
-    .co-head { grid-template-columns: 1fr; }
-    .co-head .shot { min-height: 200px; position: relative; }
-    .duo { grid-template-columns: 1fr; }
-    body { font-size: 16px; }
-  }
-
-  /* Wide screens: use the horizontal space */
-  @media (min-width: 1400px) {
-    body { font-size: 18px; }
-    .loot { grid-template-columns: repeat(auto-fill, minmax(128px, 1fr)); }
-    .almanac { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
-  }
-  @media (min-width: 1800px) {
-    .wrap { max-width: 1760px; }
-    .co-head { grid-template-columns: minmax(320px, 40%) 1fr; }
-  }
-
-  /* Top page navigation */
-  .pages-nav {
-    --nav-bg: #10242b;
-    --nav-ink: #d8d2bd;
-    --nav-muted: #8f9d98;
-    position: sticky; top: 0; z-index: 40;
-    width: 100vw; margin-left: calc(50% - 50vw);
-    background: rgba(16, 36, 43, .97);
-    border-bottom: 1px solid rgba(211, 164, 60, .42);
-    box-shadow: 0 8px 26px rgba(6, 18, 22, .18);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-  }
-  .pages-nav__inner {
-    width: min(1600px, 96vw); min-width: 0; height: 64px;
-    margin: 0 auto; padding: 0 clamp(16px, 2vw, 40px);
-    display: flex; align-items: stretch;
-  }
-  .pages-nav__brand {
-    flex: none; display: flex; align-items: center; gap: 10px;
-    padding-right: 20px; margin-right: 6px;
-    border-right: 1px solid rgba(216, 210, 189, .14);
-    color: var(--nav-ink);
-  }
-  .pages-nav__brand svg { width: 28px; height: 28px; color: var(--brass-bright); }
-  .pages-nav__brand-copy { display: grid; line-height: 1; }
-  .pages-nav__brand strong {
-    font-family: 'Pirata One', Georgia, serif; font-size: 1.16rem;
-    font-weight: 400; letter-spacing: .035em;
-  }
-  .pages-nav__brand small {
-    margin-top: 4px; color: var(--nav-muted);
-    font-family: Georgia, serif; font-size: .56rem;
-    font-weight: 700; letter-spacing: .19em; text-transform: uppercase;
-  }
-  .pages-nav__rail {
-    min-width: 0; display: flex; align-items: stretch;
-    overflow-x: auto; overscroll-behavior-x: contain;
-    scrollbar-width: none;
-  }
-  .pages-nav__rail::-webkit-scrollbar { display: none; }
-  .pages-nav a[data-page] {
-    position: relative; flex: none; display: flex; align-items: center;
-    min-height: 44px; padding: 0 clamp(9px, 1.05vw, 16px);
-    color: var(--nav-muted); text-decoration: none; white-space: nowrap;
-    font-family: Georgia, serif; font-size: clamp(.69rem, .78vw, .78rem);
-    font-weight: 700; letter-spacing: .035em;
-    touch-action: manipulation;
-    transition: color .16s ease, background-color .16s ease;
-  }
-  .pages-nav a[data-page]::after {
-    content: ""; position: absolute; right: 12px; bottom: 0; left: 12px;
-    height: 3px; background: var(--brass-bright);
-    transform: scaleX(0); transform-origin: center;
-    transition: transform .18s ease;
-  }
-  .pages-nav a[data-page]:hover {
-    color: var(--nav-ink); background: rgba(216, 210, 189, .055);
-  }
-  .pages-nav a[data-page]:focus-visible {
-    z-index: 1; color: var(--nav-ink); outline: 2px solid var(--brass-bright);
-    outline-offset: -4px;
-  }
-  .pages-nav a[data-page].active {
-    color: #f3ead0;
-    background: linear-gradient(to top, rgba(169, 130, 28, .16), transparent 72%);
-  }
-  .pages-nav a[data-page].active::after { transform: scaleX(1); }
-  @media (max-width: 1180px) {
-    .pages-nav__brand { padding-right: 13px; }
-    .pages-nav__brand-copy { display: none; }
-  }
-  @media (max-width: 600px) {
-    .pages-nav__inner { width: 100%; height: 56px; padding: 0 8px 0 12px; }
-    .pages-nav__brand { padding-right: 10px; margin-right: 2px; }
-    .pages-nav__brand svg { width: 25px; height: 25px; }
-    .pages-nav a[data-page] { padding: 0 12px; font-size: .72rem; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .pages-nav a[data-page], .pages-nav a[data-page]::after { transition: none; }
-  }
-
-  .page { display: none; }
-  .page.active { display: block; animation: fadein .2s ease; }
-  @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
-  @media (prefers-reduced-motion: reduce) { .page.active { animation: none; } }
-
-  /* Quest / guide cards */
-  .quest-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 20px 0; }
-  .quest {
-    background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--co, var(--brass));
-    border-radius: 10px; padding: 18px 20px; box-shadow: var(--shadow);
-  }
-  .quest h3 { font-family: 'Pirata One', Georgia, serif; font-size: 1.45rem; margin: 0 0 8px; color: var(--co, var(--brass)); }
-  .quest .meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
-  .quest .pill {
-    font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-    border: 1px solid var(--line); border-radius: 4px; padding: 3px 8px; color: var(--ink-soft);
-  }
-  .quest .pill.gold { color: var(--brass); border-color: var(--brass); }
-  .quest .pill.diff-easy { color: #5cba8e; border-color: #5cba8e; }
-  .quest .pill.diff-med { color: #d3a43c; border-color: #d3a43c; }
-  .quest .pill.diff-hard { color: #e06153; border-color: #e06153; }
-  .quest p { margin: 0 0 .7em; max-width: none; font-size: .95rem; }
-  .quest .do { color: var(--ink-soft); }
-  .quest .tips { margin: 10px 0 0; padding: 10px 12px; background: var(--tip-bg); border-radius: 6px; border: 1px dashed var(--co, var(--brass)); font-size: .9rem; }
-  .quest .tips b { color: var(--co, var(--brass)); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; display: block; margin-bottom: 4px; }
-
-  .map-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 18px 0; }
-  .map-card {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
-    overflow: hidden; box-shadow: var(--shadow);
-  }
-  .map-card img { width: 100%; height: 220px; object-fit: cover; background: #1a2a30; }
-  .map-card .cap { padding: 12px 14px; font-size: .9rem; color: var(--ink-soft); }
-  .map-card .cap b { display: block; color: var(--ink); margin-bottom: 4px; }
-
-  .fight-table { width: 100%; border-collapse: collapse; font-size: .92rem; }
-  .fight-table th, .fight-table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
-  .fight-table th { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); }
-  .fight-table tr:last-child td { border-bottom: none; }
-
-  .two-col { display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; align-items: start; }
-  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
-
-  .buy-list { list-style: none; padding: 0; margin: 12px 0; }
-  .buy-list li {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
-    padding: 14px 16px; margin-bottom: 10px;
-  }
-  .buy-list li b { color: var(--brass); display: block; margin-bottom: 4px; }
-  .buy-list li span { font-size: .92rem; color: var(--ink-soft); }
-
-
-  .outpost-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin: 18px 0; }
-  .outpost-btn {
-    display: block; width: 100%; text-align: left; cursor: pointer;
-    background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
-    padding: 0; overflow: hidden; color: inherit; font: inherit; box-shadow: var(--shadow);
-  }
-  .outpost-btn:hover, .outpost-btn:focus-visible { border-color: var(--brass); outline: none; }
-  .outpost-btn img { width: 100%; height: 120px; object-fit: cover; display: block; }
-  .outpost-btn .obody { padding: 10px 12px; }
-  .outpost-btn .obody b { display: block; color: var(--brass); }
-  .outpost-btn .obody span { font-size: .85rem; color: var(--ink-soft); }
-  .quest-shot { width: 100%; height: 140px; object-fit: cover; border-radius: 8px; margin: 0 0 12px; background: #1a2a30; }
-  .fight-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin: 18px 0; }
-  .fight-card {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
-    overflow: hidden; box-shadow: var(--shadow);
-  }
-  .fight-card .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
-  .fight-card .shots figure { position: relative; margin: 0; overflow: hidden; }
-  .fight-card .shots img {
-    width: 100%; height: 110px; object-fit: cover; cursor: zoom-in;
-    transition: filter .16s ease;
-  }
-  .fight-card .shots img:hover { filter: brightness(1.08); }
-  .fight-card .shots img:focus-visible {
-    position: relative; z-index: 1; outline: 3px solid var(--brass-bright);
-    outline-offset: -3px;
-  }
-  .fight-card .shots img.enemy-full {
-    object-fit: contain; object-position: center; padding: 4px;
-    background: radial-gradient(circle at 50% 34%, #314951 0, #14242b 72%);
-  }
-  .fight-card .shots figcaption {
-    font-size: .68rem; letter-spacing: .06em; text-transform: uppercase;
-    color: var(--ink-soft); padding: 4px 8px; background: var(--paper);
-  }
-  .fight-card .fbody { padding: 12px 14px 14px; }
-  .fight-card .fbody b { display: block; color: var(--brass); margin-bottom: 4px; }
-  .fight-card .fbody p { margin: 0; font-size: .9rem; color: var(--ink-soft); max-width: none; }
-  @media (prefers-reduced-motion: reduce) {
-    .fight-card .shots img { transition: none; }
-  }
-
-  /* Emissary guide */
-  .grade-track {
-    display: grid; grid-template-columns: repeat(5, 1fr);
-    margin: 24px 0 12px; overflow: hidden;
-    border: 1px solid var(--line); border-radius: 10px;
-    background: var(--surface); box-shadow: var(--shadow);
-  }
-  .grade {
-    min-width: 0; padding: 16px 10px; text-align: center;
-    border-right: 1px solid var(--line);
-  }
-  .grade:last-child { border-right: 0; }
-  .grade small {
-    display: block; color: var(--ink-soft); font-size: .62rem;
-    font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
-  }
-  .grade strong {
-    display: block; margin: 4px 0 1px; color: var(--brass);
-    font-family: 'Pirata One', Georgia, serif; font-size: clamp(1.45rem, 3vw, 2rem);
-    font-weight: 400; line-height: 1;
-  }
-  .grade span { color: var(--ink-soft); font-size: .74rem; font-weight: 700; }
-  .emissary-note {
-    margin: 0 auto 24px; max-width: 76ch; color: var(--ink-soft);
-    text-align: center; font-size: .84rem;
-  }
-  .emissary-intro { max-width: 76ch; }
-  .subsection-title { margin-top: 36px; text-align: center; }
-  .almanac-spaced { margin-top: 18px; }
-  .emissary-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 16px; margin: 24px 0;
-  }
-  .emissary-card {
-    --co: var(--brass); min-width: 0; padding: 18px 20px;
-    background: var(--surface); border: 1px solid var(--line);
-    border-top: 5px solid var(--co); border-radius: 10px; box-shadow: var(--shadow);
-  }
-  .emissary-card h3 {
-    margin: 0 0 4px; color: var(--co);
-    font-family: 'Pirata One', Georgia, serif; font-size: 1.55rem; font-weight: 400;
-  }
-  .emissary-card .unlock {
-    margin: 0 0 12px; color: var(--ink-soft); font-size: .76rem;
-    font-weight: 700; letter-spacing: .04em;
-  }
-  .emissary-card p { margin: 0 0 9px; max-width: none; font-size: .9rem; }
-  .emissary-card p:last-child { margin-bottom: 0; }
-  .emissary-card .grade-five {
-    padding-top: 9px; border-top: 1px solid var(--line); color: var(--ink-soft);
-  }
-  @media (max-width: 600px) {
-    .grade { padding: 13px 4px; }
-    .grade small { font-size: .54rem; letter-spacing: .08em; }
-    .grade span { font-size: .65rem; }
-  }
-
-  /* World events */
-  .event-season {
-    display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start;
-    margin: 20px 0 24px; padding: 16px 18px;
-    background: var(--tip-bg); border: 1px dashed var(--brass); border-radius: 10px;
-  }
-  .event-season .stamp {
-    min-width: 72px; padding: 8px 10px; text-align: center;
-    color: var(--paper); background: var(--brass); border-radius: 6px;
-    font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-  }
-  .event-season p { margin: 0; max-width: none; color: var(--ink-soft); }
-  .event-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 16px; margin: 20px 0;
-  }
-  .event-card {
-    --event: var(--brass);
-    display: flex; flex-direction: column; min-width: 0;
-    overflow: hidden; background: var(--surface);
-    border: 1px solid var(--line); border-top: 5px solid var(--event);
-    border-radius: 10px; box-shadow: var(--shadow);
-  }
-  .event-visuals {
-    display: grid; grid-template-columns: 1fr 1fr;
-    background: #14242b;
-  }
-  .event-shot {
-    position: relative; min-width: 0; margin: 0; overflow: hidden;
-    border-right: 1px solid rgba(226, 220, 198, .2);
-  }
-  .event-shot:last-child { border-right: 0; }
-  .event-shot img {
-    width: 100%; height: auto; aspect-ratio: 16 / 10;
-    display: block; object-fit: cover; background: #14242b;
-  }
-  .event-shot img.event-marker-art { object-fit: contain; padding: 8px; }
-  .event-shot figcaption {
-    position: absolute; left: 8px; bottom: 8px;
-    padding: 4px 7px; color: #f2ead2;
-    background: rgba(9, 24, 29, .84);
-    border: 1px solid rgba(226, 220, 198, .24);
-    border-radius: 3px;
-    font-size: .56rem; font-weight: 700; letter-spacing: .13em;
-    line-height: 1; text-transform: uppercase;
-    backdrop-filter: blur(4px);
-  }
-  .event-shot:first-child figcaption {
-    color: #f1c75f; border-color: rgba(241, 199, 95, .45);
-  }
-  .event-card .event-body { display: flex; flex: 1; flex-direction: column; padding: 16px 18px 18px; }
-  .event-card h3 {
-    margin: 0 0 5px; color: var(--event);
-    font-family: 'Pirata One', Georgia, serif; font-size: 1.55rem; text-wrap: balance;
-  }
-  .event-marker {
-    margin: 0 0 12px; color: var(--ink-soft);
-    font-size: .78rem; letter-spacing: .03em;
-  }
-  .event-stats {
-    display: grid; grid-template-columns: 1.15fr .85fr .8fr;
-    gap: 7px; margin: 0 0 13px;
-  }
-  .event-stat {
-    min-width: 0; padding: 8px 9px; background: var(--paper);
-    border: 1px solid var(--line); border-radius: 6px;
-  }
-  .event-stat small {
-    display: block; margin-bottom: 2px; color: var(--ink-soft);
-    font-size: .59rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-  }
-  .event-stat strong { color: var(--ink); font-size: .82rem; font-variant-numeric: tabular-nums; }
-  .event-card .event-do { margin: 0 0 12px; max-width: none; color: var(--ink-soft); font-size: .9rem; }
-  .event-card .event-do b { color: var(--ink); }
-  .event-card .event-tip {
-    margin-top: auto; padding-top: 11px; border-top: 1px solid var(--line);
-    color: var(--ink-soft); font-size: .82rem;
-  }
-  .event-card .event-tip b { color: var(--event); }
-  .event-footnote { color: var(--ink-soft); font-size: .82rem; text-align: center; }
-  @media (max-width: 520px) {
-    .event-season { grid-template-columns: 1fr; }
-    .event-stats { grid-template-columns: 1fr 1fr; }
-    .event-stat:first-child { grid-column: 1 / -1; }
-  }
-
-</style>
+<link rel="preload" href="guide-assets/fonts/pirata-one.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="guide-assets/guide.css">
 </head>
 <body>
-
+<a class="skip-link" href="#main-content">Skip to main content</a>
 <div class="wrap">
 
 <svg class="icon-sprite" aria-hidden="true">
@@ -698,17 +64,18 @@
 </nav>
 
 
+<main id="main-content" tabindex="-1">
 <section class="page active" id="page-home" data-page="home">
 <header>
   <span class="eyebrow">A beginner's chart · updated July 2026</span>
   <h1>The Pirate's Ledger</h1>
-  <p class="sub">Companies, quests, map reading, fights, Emporium picks, and wind — a beginner chart you can jump through by topic.</p>
+  <p class="sub">Companies, quests, world events, fights, emissaries, and map reading — a beginner chart you can jump through by topic.</p>
   <div class="rule" aria-hidden="true">
     <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.4">
       <circle cx="13" cy="13" r="10"/><path d="M13 4v4M13 18v4M4 13h4M18 13h4M13 13l4.2-7.4L13 13l-4.2 7.4z"/>
     </svg>
   </div>
-  <p class="meta-line">Hover (or tap) any item card or <span class="iref" data-ref="#img-licence" data-cap="Like this — an Emissary Licence">dotted term</span> for a bigger picture</p>
+  <p class="meta-line">Hover (or tap) any item card or <button type="button" class="iref" data-preview="guide-assets/tips/licence.png" data-cap="Like this — an Emissary Licence">dotted term</button> for a bigger picture</p>
 </header>
 
 <div class="callout">
@@ -725,14 +92,14 @@
     <div class="step"><span class="n">04</span><b>Sell to the right buyer</b><p>Each company has its own rep at the outpost. Hand them their kind of loot for gold and reputation.</p></div>
   </div>
   <nav class="chips" aria-label="Jump to a company">
-    <a href="#gh" style="--co: var(--co-gh)">Gold Hoarders</a>
-    <a href="#oos" style="--co: var(--co-oos)">Order of Souls</a>
-    <a href="#ma" style="--co: var(--co-ma)">Merchant Alliance</a>
-    <a href="#hc" style="--co: var(--co-hc)">The Hunter's Call</a>
-    <a href="#rb" style="--co: var(--co-rb)">Reaper's Bones</a>
-    <a href="#af" style="--co: var(--co-af)">Athena's Fortune</a>
-    <a href="#sov" style="--co: var(--co-sov)">The Sovereigns</a>
-    <a href="#sl" style="--co: var(--co-sl)">Smugglers' League</a>
+    <a href="#gh" class="theme-gh">Gold Hoarders</a>
+    <a href="#oos" class="theme-oos">Order of Souls</a>
+    <a href="#ma" class="theme-ma">Merchant Alliance</a>
+    <a href="#hc" class="theme-hc">The Hunter's Call</a>
+    <a href="#rb" class="theme-rb">Reaper's Bones</a>
+    <a href="#af" class="theme-af">Athena's Fortune</a>
+    <a href="#sov" class="theme-sov">The Sovereigns</a>
+    <a href="#sl" class="theme-sl">Smugglers' League</a>
   </nav>
 </section>
 
@@ -745,9 +112,9 @@
   <p class="price-note">Each company grid lists the main sellables sorted low → high. Prices are <b>approximate base gold</b> from the wiki (exact rolls vary; ranges cover common variants). Grade&nbsp;5 emissary pays up to 2.5× more. Exception: Reaper’s Chest pays <b>~20 doubloons</b> (not gold). <b>Raid rewards</b> are exclusive loot from company Raid Voyages (dive to an Ashen Lord / Skeleton Fort / Skeleton Fleet / Burning Blade) — usually ~5,000&nbsp;g, ~10,000&nbsp;g, or ~15,000&nbsp;g by difficulty.</p>
 
   <!-- GOLD HOARDERS -->
-  <article class="co" id="gh" style="--co: var(--co-gh)">
+  <article class="co theme-gh" id="gh">
     <div class="co-head">
-      <div class="shot"><img src="guide-assets/companies/a-gold-hoarders-representative-at-their-tent-on-an-outpost.jpg" alt="A Gold Hoarders representative at their tent on an outpost" width="500" height="281"><span class="credit">seaofthieves.wiki.gg</span></div>
+      <div class="shot"><img src="guide-assets/companies/a-gold-hoarders-representative-at-their-tent-on-an-outpost.jpg" alt="A Gold Hoarders representative at their tent on an outpost" width="500" height="281" loading="lazy" decoding="async"><span class="credit">seaofthieves.wiki.gg</span></div>
       <div class="co-body">
         <span class="badge">Start here</span>
         <h3 class="co-name">Gold Hoarders</h3>
@@ -757,119 +124,119 @@
     </div>
     <p class="loot-label">Loot they buy <small>· low → high · wiki base prices</small></p>
         <ul class="loot">
-<li><img data-preview="guide-assets/loot/ancient-goblet.webp" src="guide-assets/loot/ancient-goblet.webp" alt="Ancient Goblet" width="68" height="68" loading="lazy" decoding="async">
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/ancient-goblet.webp" src="guide-assets/loot/ancient-goblet.webp" alt="Ancient Goblet" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Ancient Goblet</span>
         <span class="price">60–130 g</span>
-        <span class="note">Artefact</span></li>
-<li><img data-preview="guide-assets/loot/castaway-s-chest.webp" src="guide-assets/loot/castaway-s-chest.webp" alt="Castaway's Chest" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Artefact</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/castaway-s-chest.webp" src="guide-assets/loot/castaway-s-chest.webp" alt="Castaway's Chest" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Castaway's Chest</span>
-        <span class="price">60–130 g</span></li>
-<li><img data-preview="guide-assets/loot/coral-castaway-s-chest.webp" src="guide-assets/loot/coral-castaway-s-chest.webp" alt="Coral Castaway's Chest" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">60–130 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/coral-castaway-s-chest.webp" src="guide-assets/loot/coral-castaway-s-chest.webp" alt="Coral Castaway's Chest" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Coral Castaway's Chest</span>
         <span class="price">105–228 g</span>
-        <span class="note">Sunken Kingdom</span></li>
-<li><img data-preview="guide-assets/loot/ashen-castaway-s-chest.webp" src="guide-assets/loot/ashen-castaway-s-chest.webp" alt="Ashen Castaway's Chest" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Sunken Kingdom</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/ashen-castaway-s-chest.webp" src="guide-assets/loot/ashen-castaway-s-chest.webp" alt="Ashen Castaway's Chest" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Ashen Castaway's Chest</span>
         <span class="price">140–260 g</span>
-        <span class="note">Devil's Roar</span></li>
-<li><img data-preview="guide-assets/loot/seafarer-s-chest.webp" src="guide-assets/loot/seafarer-s-chest.webp" alt="Seafarer's Chest" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Devil's Roar</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/seafarer-s-chest.webp" src="guide-assets/loot/seafarer-s-chest.webp" alt="Seafarer's Chest" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Seafarer's Chest</span>
-        <span class="price">140–260 g</span></li>
-<li><img data-preview="guide-assets/loot/silvered-cup.webp" src="guide-assets/loot/silvered-cup.webp" alt="Silvered Cup" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">140–260 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/silvered-cup.webp" src="guide-assets/loot/silvered-cup.webp" alt="Silvered Cup" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Silvered Cup</span>
         <span class="price">140–260 g</span>
-        <span class="note">Artefact</span></li>
-<li><img data-preview="guide-assets/loot/ashen-seafarer-s-chest.webp" src="guide-assets/loot/ashen-seafarer-s-chest.webp" alt="Ashen Seafarer's Chest" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Artefact</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/ashen-seafarer-s-chest.webp" src="guide-assets/loot/ashen-seafarer-s-chest.webp" alt="Ashen Seafarer's Chest" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Ashen Seafarer's Chest</span>
-        <span class="price">280–520 g</span></li>
-<li><img data-preview="guide-assets/loot/gilded-chalice.webp" src="guide-assets/loot/gilded-chalice.webp" alt="Gilded Chalice" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">280–520 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/gilded-chalice.webp" src="guide-assets/loot/gilded-chalice.webp" alt="Gilded Chalice" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Gilded Chalice</span>
         <span class="price">280–520 g</span>
-        <span class="note">Artefact</span></li>
-<li><img data-preview="guide-assets/loot/marauder-s-chest.webp" src="guide-assets/loot/marauder-s-chest.webp" alt="Marauder's Chest" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Artefact</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/marauder-s-chest.webp" src="guide-assets/loot/marauder-s-chest.webp" alt="Marauder's Chest" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Marauder's Chest</span>
-        <span class="price">280–520 g</span></li>
-<li><img data-preview="guide-assets/loot/ashen-marauder-s-chest.webp" src="guide-assets/loot/ashen-marauder-s-chest.webp" alt="Ashen Marauder's Chest" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">280–520 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/ashen-marauder-s-chest.webp" src="guide-assets/loot/ashen-marauder-s-chest.webp" alt="Ashen Marauder's Chest" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Ashen Marauder's Chest</span>
-        <span class="price">560–1,100 g</span></li>
-<li><img data-preview="guide-assets/loot/captain-s-chest.webp" src="guide-assets/loot/captain-s-chest.webp" alt="Captain's Chest" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">560–1,100 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/captain-s-chest.webp" src="guide-assets/loot/captain-s-chest.webp" alt="Captain's Chest" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Captain's Chest</span>
-        <span class="price">560–1,100 g</span></li>
-<li><img data-preview="guide-assets/loot/opulent-curio.webp" src="guide-assets/loot/opulent-curio.webp" alt="Opulent Curio" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">560–1,100 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/opulent-curio.webp" src="guide-assets/loot/opulent-curio.webp" alt="Opulent Curio" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Opulent Curio</span>
         <span class="price">560–1,100 g</span>
-        <span class="note">Artefact</span></li>
-<li><img data-preview="guide-assets/loot/coral-captain-s-chest.webp" src="guide-assets/loot/coral-captain-s-chest.webp" alt="Coral Captain's Chest" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Artefact</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/coral-captain-s-chest.webp" src="guide-assets/loot/coral-captain-s-chest.webp" alt="Coral Captain's Chest" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Coral Captain's Chest</span>
-        <span class="price">980–1,925 g</span></li>
-<li><img data-preview="guide-assets/loot/mermaid-gem.webp" src="guide-assets/loot/mermaid-gem.webp" alt="Mermaid Gem" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">980–1,925 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/mermaid-gem.webp" src="guide-assets/loot/mermaid-gem.webp" alt="Mermaid Gem" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Mermaid Gem</span>
         <span class="price">1,000 g</span>
-        <span class="note">Any colour · multi-company</span></li>
-<li><img data-preview="guide-assets/loot/sailor-s-chest.webp" src="guide-assets/loot/sailor-s-chest.webp" alt="Sailor's Chest" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Any colour · multi-company</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/sailor-s-chest.webp" src="guide-assets/loot/sailor-s-chest.webp" alt="Sailor's Chest" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Sailor's Chest</span>
-        <span class="price">1,000–1,050 g</span></li>
-<li><img data-preview="guide-assets/loot/chest-of-the-damned.webp" src="guide-assets/loot/chest-of-the-damned.webp" alt="Chest of the Damned" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">1,000–1,050 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/chest-of-the-damned.webp" src="guide-assets/loot/chest-of-the-damned.webp" alt="Chest of the Damned" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Chest of the Damned</span>
         <span class="price">1,000–1,160 g</span>
-        <span class="note">Ghost Fleet</span></li>
-<li><img data-preview="guide-assets/loot/ashen-captain-s-chest.webp" src="guide-assets/loot/ashen-captain-s-chest.webp" alt="Ashen Captain's Chest" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Ghost Fleet</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/ashen-captain-s-chest.webp" src="guide-assets/loot/ashen-captain-s-chest.webp" alt="Ashen Captain's Chest" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Ashen Captain's Chest</span>
-        <span class="price">1,100–2,100 g</span></li>
-<li><img data-preview="guide-assets/loot/skeleton-captain-s-chest.webp" src="guide-assets/loot/skeleton-captain-s-chest.webp" alt="Skeleton Captain's Chest" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">1,100–2,100 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/skeleton-captain-s-chest.webp" src="guide-assets/loot/skeleton-captain-s-chest.webp" alt="Skeleton Captain's Chest" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Skeleton Captain's Chest</span>
-        <span class="price">1,150–1,550 g</span></li>
-<li><img data-preview="guide-assets/loot/sea-master-s-chest.webp" src="guide-assets/loot/sea-master-s-chest.webp" alt="Sea Master's Chest" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">1,150–1,550 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/sea-master-s-chest.webp" src="guide-assets/loot/sea-master-s-chest.webp" alt="Sea Master's Chest" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Sea Master's Chest</span>
-        <span class="price">1,500–1,550 g</span></li>
-<li><img data-preview="guide-assets/loot/stronghold-chest.webp" src="guide-assets/loot/stronghold-chest.webp" alt="Stronghold Chest" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">1,500–1,550 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/stronghold-chest.webp" src="guide-assets/loot/stronghold-chest.webp" alt="Stronghold Chest" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Stronghold Chest</span>
         <span class="price">1,500–3,000 g</span>
-        <span class="note">Fort vault</span></li>
-<li><img data-preview="guide-assets/loot/admiral-s-chest.webp" src="guide-assets/loot/admiral-s-chest.webp" alt="Admiral's Chest" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Fort vault</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/admiral-s-chest.webp" src="guide-assets/loot/admiral-s-chest.webp" alt="Admiral's Chest" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Admiral's Chest</span>
-        <span class="price">1,525–1,575 g</span></li>
-<li><img data-preview="guide-assets/loot/baron-s-chest.webp" src="guide-assets/loot/baron-s-chest.webp" alt="Baron's Chest" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">1,525–1,575 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/baron-s-chest.webp" src="guide-assets/loot/baron-s-chest.webp" alt="Baron's Chest" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Baron's Chest</span>
-        <span class="price">2,000–2,050 g</span></li>
-<li><img data-preview="guide-assets/loot/king-s-chest.webp" src="guide-assets/loot/king-s-chest.webp" alt="King's Chest" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">2,000–2,050 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/king-s-chest.webp" src="guide-assets/loot/king-s-chest.webp" alt="King's Chest" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">King's Chest</span>
-        <span class="price">3,000–3,100 g</span></li>
-<li><img data-preview="guide-assets/loot/chest-of-sorrow.webp" id="img-sorrow" src="guide-assets/loot/chest-of-sorrow.webp" alt="Chest of Sorrow" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">3,000–3,100 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/chest-of-sorrow.webp" id="img-sorrow" src="guide-assets/loot/chest-of-sorrow.webp" alt="Chest of Sorrow" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Chest of Sorrow</span>
         <span class="price">3,000–3,500 g</span>
-        <span class="note">Weeps water</span></li>
-<li><img data-preview="guide-assets/loot/chest-of-rage.webp" src="guide-assets/loot/chest-of-rage.webp" alt="Chest of Rage" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Weeps water</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/chest-of-rage.webp" src="guide-assets/loot/chest-of-rage.webp" alt="Chest of Rage" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Chest of Rage</span>
         <span class="price">3,000–6,000 g</span>
-        <span class="note">Ashen Lord · heats up</span></li>
-<li><img data-preview="guide-assets/loot/crown-of-hope.webp" src="guide-assets/loot/crown-of-hope.webp" alt="Crown of Hope" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Ashen Lord · heats up</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/crown-of-hope.webp" src="guide-assets/loot/crown-of-hope.webp" alt="Crown of Hope" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Crown of Hope</span>
         <span class="price">3,100–3,200 g</span>
-        <span class="note">Kingly artefact</span></li>
-<li><img data-preview="guide-assets/loot/chest-of-ancient-tributes.webp" src="guide-assets/loot/chest-of-ancient-tributes.webp" alt="Chest of Ancient Tributes" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Kingly artefact</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/chest-of-ancient-tributes.webp" src="guide-assets/loot/chest-of-ancient-tributes.webp" alt="Chest of Ancient Tributes" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Chest of Ancient Tributes</span>
         <span class="price">3,400–3,900 g</span>
-        <span class="note">Vaults / Shrines</span></li>
-<li><img data-preview="guide-assets/loot/ashen-king-s-chest.webp" src="guide-assets/loot/ashen-king-s-chest.webp" alt="Ashen King's Chest" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Vaults / Shrines</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/ashen-king-s-chest.webp" src="guide-assets/loot/ashen-king-s-chest.webp" alt="Ashen King's Chest" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Ashen King's Chest</span>
-        <span class="price">3,700–3,800 g</span></li>
-<li><img data-preview="guide-assets/loot/hoarder-s-reliquary.webp" src="guide-assets/loot/hoarder-s-reliquary.webp" alt="Hoarder's Reliquary" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">3,700–3,800 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/hoarder-s-reliquary.webp" src="guide-assets/loot/hoarder-s-reliquary.webp" alt="Hoarder's Reliquary" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Hoarder's Reliquary</span>
         <span class="price">~5,000–15,000 g</span>
-        <span class="note">Raid voyage exclusive · tier by difficulty</span></li>
-<li><img data-preview="guide-assets/loot/chest-of-fortune.webp" src="guide-assets/loot/chest-of-fortune.webp" alt="Chest of Fortune" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Raid voyage exclusive · tier by difficulty</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/chest-of-fortune.webp" src="guide-assets/loot/chest-of-fortune.webp" alt="Chest of Fortune" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Chest of Fortune</span>
         <span class="price">~20,000 g</span>
-        <span class="note">Season / events</span></li>
+        <span class="note">Season / events</span></button></li>
 </ul>
-    <div class="tip"><b>Deckhand's tip</b><p>Got a <span class="iref" data-ref="#img-sorrow" data-cap="Chest of Sorrow" data-sub="3,000–3,500 g — and leaking">Chest of Sorrow</span> aboard? It weeps sea-water on a timer. Park it on the top deck and keep a bucket handy, or it will quietly sink you from the inside.</p></div>
+    <div class="tip"><b>Deckhand's tip</b><p>Got a <button type="button" class="iref" data-preview="guide-assets/loot/chest-of-sorrow.webp" data-cap="Chest of Sorrow" data-sub="3,000–3,500 g — and leaking">Chest of Sorrow</button> aboard? It weeps sea-water on a timer. Park it on the top deck and keep a bucket handy, or it will quietly sink you from the inside.</p></div>
   </article>
 
   <!-- ORDER OF SOULS -->
-  <article class="co" id="oos" style="--co: var(--co-oos)">
+  <article class="co theme-oos" id="oos">
     <div class="co-head">
-      <div class="shot"><img src="guide-assets/companies/an-order-of-souls-mystic-inside-their-candle-lit-shop.jpg" alt="An Order of Souls mystic inside their candle-lit shop" width="500" height="281"><span class="credit">seaofthieves.wiki.gg</span></div>
+      <div class="shot"><img src="guide-assets/companies/an-order-of-souls-mystic-inside-their-candle-lit-shop.jpg" alt="An Order of Souls mystic inside their candle-lit shop" width="500" height="281" loading="lazy" decoding="async"><span class="credit">seaofthieves.wiki.gg</span></div>
       <div class="co-body">
         <span class="badge">Combat voyages</span>
         <h3 class="co-name">Order of Souls</h3>
@@ -879,271 +246,271 @@
     </div>
     <p class="loot-label">Loot they buy <small>· low → high · wiki base prices</small></p>
         <ul class="loot">
-<li><img data-preview="guide-assets/loot/foul-bounty-skull.webp" src="guide-assets/loot/foul-bounty-skull.webp" alt="Foul Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/foul-bounty-skull.webp" src="guide-assets/loot/foul-bounty-skull.webp" alt="Foul Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Foul Bounty Skull</span>
-        <span class="price">90–180 g</span></li>
-<li><img data-preview="guide-assets/loot/foul-coral-skull.webp" src="guide-assets/loot/foul-coral-skull.webp" alt="Foul Coral Skull" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">90–180 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/foul-coral-skull.webp" src="guide-assets/loot/foul-coral-skull.webp" alt="Foul Coral Skull" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Foul Coral Skull</span>
         <span class="price">158–315 g</span>
-        <span class="note">Sunken Kingdom</span></li>
-<li><img data-preview="guide-assets/loot/ashen-foul-bounty-skull.webp" src="guide-assets/loot/ashen-foul-bounty-skull.webp" alt="Ashen Foul Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Sunken Kingdom</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/ashen-foul-bounty-skull.webp" src="guide-assets/loot/ashen-foul-bounty-skull.webp" alt="Ashen Foul Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Ashen Foul Bounty Skull</span>
         <span class="price">180–350 g</span>
-        <span class="note">Devil's Roar</span></li>
-<li><img data-preview="guide-assets/loot/disgraced-bounty-skull.webp" src="guide-assets/loot/disgraced-bounty-skull.webp" alt="Disgraced Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Devil's Roar</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/disgraced-bounty-skull.webp" src="guide-assets/loot/disgraced-bounty-skull.webp" alt="Disgraced Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Disgraced Bounty Skull</span>
-        <span class="price">180–350 g</span></li>
-<li><img data-preview="guide-assets/loot/ashen-disgraced-bounty-skull.webp" src="guide-assets/loot/ashen-disgraced-bounty-skull.webp" alt="Ashen Disgraced Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">180–350 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/ashen-disgraced-bounty-skull.webp" src="guide-assets/loot/ashen-disgraced-bounty-skull.webp" alt="Ashen Disgraced Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Ashen Disgraced Bounty Skull</span>
-        <span class="price">350–750 g</span></li>
-<li><img data-preview="guide-assets/loot/hateful-bounty-skull.webp" src="guide-assets/loot/hateful-bounty-skull.webp" alt="Hateful Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">350–750 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/hateful-bounty-skull.webp" src="guide-assets/loot/hateful-bounty-skull.webp" alt="Hateful Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Hateful Bounty Skull</span>
-        <span class="price">350–750 g</span></li>
-<li><img data-preview="guide-assets/loot/ashen-hateful-bounty-skull.webp" src="guide-assets/loot/ashen-hateful-bounty-skull.webp" alt="Ashen Hateful Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">350–750 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/ashen-hateful-bounty-skull.webp" src="guide-assets/loot/ashen-hateful-bounty-skull.webp" alt="Ashen Hateful Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Ashen Hateful Bounty Skull</span>
-        <span class="price">750–1,450 g</span></li>
-<li><img data-preview="guide-assets/loot/villainous-bounty-skull.webp" src="guide-assets/loot/villainous-bounty-skull.webp" alt="Villainous Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">750–1,450 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/villainous-bounty-skull.webp" src="guide-assets/loot/villainous-bounty-skull.webp" alt="Villainous Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Villainous Bounty Skull</span>
-        <span class="price">750–1,450 g</span></li>
-<li><img data-preview="guide-assets/loot/skeleton-captain-s-skull.webp" src="guide-assets/loot/skeleton-captain-s-skull.webp" alt="Skeleton Captain's Skull" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">750–1,450 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/skeleton-captain-s-skull.webp" src="guide-assets/loot/skeleton-captain-s-skull.webp" alt="Skeleton Captain's Skull" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Skeleton Captain's Skull</span>
-        <span class="price">850–2,200 g</span></li>
-<li><img data-preview="guide-assets/loot/dark-bounty-skull.webp" src="guide-assets/loot/dark-bounty-skull.webp" alt="Dark Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">850–2,200 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/dark-bounty-skull.webp" src="guide-assets/loot/dark-bounty-skull.webp" alt="Dark Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Dark Bounty Skull</span>
-        <span class="price">1,000–1,050 g</span></li>
-<li><img data-preview="guide-assets/loot/skull-of-the-damned.webp" src="guide-assets/loot/skull-of-the-damned.webp" alt="Skull of the Damned" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">1,000–1,050 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/skull-of-the-damned.webp" src="guide-assets/loot/skull-of-the-damned.webp" alt="Skull of the Damned" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Skull of the Damned</span>
         <span class="price">1,050–1,250 g</span>
-        <span class="note">Ghost Fleet</span></li>
-<li><img data-preview="guide-assets/loot/villainous-coral-skull.webp" src="guide-assets/loot/villainous-coral-skull.webp" alt="Villainous Coral Skull" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Ghost Fleet</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/villainous-coral-skull.webp" src="guide-assets/loot/villainous-coral-skull.webp" alt="Villainous Coral Skull" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Villainous Coral Skull</span>
-        <span class="price">1,313–2,538 g</span></li>
-<li><img data-preview="guide-assets/loot/ashen-villainous-bounty-skull.webp" src="guide-assets/loot/ashen-villainous-bounty-skull.webp" alt="Ashen Villainous Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">1,313–2,538 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/ashen-villainous-bounty-skull.webp" src="guide-assets/loot/ashen-villainous-bounty-skull.webp" alt="Ashen Villainous Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Ashen Villainous Bounty Skull</span>
-        <span class="price">1,450–2,800 g</span></li>
-<li><img data-preview="guide-assets/loot/vile-bounty-skull.webp" src="guide-assets/loot/vile-bounty-skull.webp" alt="Vile Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">1,450–2,800 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/vile-bounty-skull.webp" src="guide-assets/loot/vile-bounty-skull.webp" alt="Vile Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Vile Bounty Skull</span>
-        <span class="price">1,500–1,550 g</span></li>
-<li><img data-preview="guide-assets/loot/captain-skull-of-the-damned.webp" src="guide-assets/loot/captain-skull-of-the-damned.webp" alt="Captain Skull of the Damned" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">1,500–1,550 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/captain-skull-of-the-damned.webp" src="guide-assets/loot/captain-skull-of-the-damned.webp" alt="Captain Skull of the Damned" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Captain Skull of the Damned</span>
-        <span class="price">1,700–2,950 g</span></li>
-<li><img data-preview="guide-assets/loot/stronghold-skull.webp" src="guide-assets/loot/stronghold-skull.webp" alt="Stronghold Skull" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">1,700–2,950 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/stronghold-skull.webp" src="guide-assets/loot/stronghold-skull.webp" alt="Stronghold Skull" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Stronghold Skull</span>
         <span class="price">1,800–4,200 g</span>
-        <span class="note">Fort vault</span></li>
-<li><img data-preview="guide-assets/loot/corrupted-bounty-skull.webp" src="guide-assets/loot/corrupted-bounty-skull.webp" alt="Corrupted Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Fort vault</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/corrupted-bounty-skull.webp" src="guide-assets/loot/corrupted-bounty-skull.webp" alt="Corrupted Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Corrupted Bounty Skull</span>
-        <span class="price">2,440–2,460 g</span></li>
-<li><img data-preview="guide-assets/loot/obsidian-ashen-winds-skull.webp" src="guide-assets/loot/obsidian-ashen-winds-skull.webp" alt="Obsidian Ashen Winds Skull" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">2,440–2,460 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/obsidian-ashen-winds-skull.webp" src="guide-assets/loot/obsidian-ashen-winds-skull.webp" alt="Obsidian Ashen Winds Skull" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Obsidian Ashen Winds Skull</span>
         <span class="price">2,500 g</span>
-        <span class="note">Burning Blade</span></li>
-<li><img data-preview="guide-assets/loot/vicious-bounty-skull.webp" src="guide-assets/loot/vicious-bounty-skull.webp" alt="Vicious Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Burning Blade</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/vicious-bounty-skull.webp" src="guide-assets/loot/vicious-bounty-skull.webp" alt="Vicious Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Vicious Bounty Skull</span>
-        <span class="price">3,600–3,650 g</span></li>
-<li><img data-preview="guide-assets/loot/eye-of-souls.webp" src="guide-assets/loot/eye-of-souls.webp" alt="Eye of Souls" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">3,600–3,650 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/eye-of-souls.webp" src="guide-assets/loot/eye-of-souls.webp" alt="Eye of Souls" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Eye of Souls</span>
         <span class="price">~5,000 g</span>
-        <span class="note">Raid voyage · Ashen Lord</span></li>
-<li><img data-preview="guide-assets/loot/wrathful-king-s-bounty-skull.webp" src="guide-assets/loot/wrathful-king-s-bounty-skull.webp" alt="Wrathful King's Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Raid voyage · Ashen Lord</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/wrathful-king-s-bounty-skull.webp" src="guide-assets/loot/wrathful-king-s-bounty-skull.webp" alt="Wrathful King's Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Wrathful King's Bounty Skull</span>
-        <span class="price">5,100–5,200 g</span></li>
-<li><img data-preview="guide-assets/loot/ashen-king-s-bounty-skull.webp" src="guide-assets/loot/ashen-king-s-bounty-skull.webp" alt="Ashen King's Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">5,100–5,200 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/ashen-king-s-bounty-skull.webp" src="guide-assets/loot/ashen-king-s-bounty-skull.webp" alt="Ashen King's Bounty Skull" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Ashen King's Bounty Skull</span>
-        <span class="price">5,800–5,900 g</span></li>
-<li><img data-preview="guide-assets/loot/ashen-winds-skull.webp" src="guide-assets/loot/ashen-winds-skull.webp" alt="Ashen Winds Skull" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">5,800–5,900 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/ashen-winds-skull.webp" src="guide-assets/loot/ashen-winds-skull.webp" alt="Ashen Winds Skull" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Ashen Winds Skull</span>
         <span class="price">10,000 g</span>
-        <span class="note">Ashen Lord · flamethrower</span></li>
-<li><img data-preview="guide-assets/loot/veiled-eye-of-souls.webp" src="guide-assets/loot/veiled-eye-of-souls.webp" alt="Veiled Eye of Souls" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Ashen Lord · flamethrower</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/veiled-eye-of-souls.webp" src="guide-assets/loot/veiled-eye-of-souls.webp" alt="Veiled Eye of Souls" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Veiled Eye of Souls</span>
         <span class="price">~10,000 g</span>
-        <span class="note">Raid voyage · Skeleton Fort</span></li>
-<li><img data-preview="guide-assets/loot/all-seeing-eye-of-souls.webp" src="guide-assets/loot/all-seeing-eye-of-souls.webp" alt="All-Seeing Eye of Souls" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Raid voyage · Skeleton Fort</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/all-seeing-eye-of-souls.webp" src="guide-assets/loot/all-seeing-eye-of-souls.webp" alt="All-Seeing Eye of Souls" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">All-Seeing Eye of Souls</span>
         <span class="price">~15,000 g</span>
-        <span class="note">Raid voyage · Fleet / Burning Blade</span></li>
+        <span class="note">Raid voyage · Fleet / Burning Blade</span></button></li>
 </ul>
     <div class="tip"><b>Deckhand's tip</b><p>Skeleton types matter: shadow skeletons only take damage in light (raise your lantern), plant skeletons hate your sword less than your bucket of water, and gold skeletons rust and slow down when wet.</p></div>
   </article>
 
   <!-- MERCHANT ALLIANCE -->
-  <article class="co" id="ma" style="--co: var(--co-ma)">
+  <article class="co theme-ma" id="ma">
     <div class="co-head">
-      <div class="shot"><img src="guide-assets/companies/a-merchant-alliance-representative-standing-on-the-outpost-dock.jpg" alt="A Merchant Alliance representative standing on the outpost dock" width="500" height="281"><span class="credit">seaofthieves.wiki.gg</span></div>
+      <div class="shot"><img src="guide-assets/companies/a-merchant-alliance-representative-standing-on-the-outpost-dock.jpg" alt="A Merchant Alliance representative standing on the outpost dock" width="500" height="281" loading="lazy" decoding="async"><span class="credit">seaofthieves.wiki.gg</span></div>
       <div class="co-body">
         <span class="badge">Honest work</span>
         <h3 class="co-name">Merchant Alliance</h3>
         <p class="where"><b>Where:</b> the clerk standing right on the dock of every outpost, next to the shipping crates.</p>
-        <p>The "honest trader" company. Their voyages are deliveries: ferry cargo before the deadline (a mint-condition cargo crate pays 700&nbsp;g), catch and cage live animals, or recover lost shipments from the seabed. They also buy commodity crates found (or stolen) around the world, and <span class="iref" data-ref="#img-gunpowder" data-cap="Gunpowder Barrel" data-sub="100–200 g — explodes if shot or dropped">gunpowder barrels</span> — handle those gently.</p>
+        <p>The "honest trader" company. Their voyages are deliveries: ferry cargo before the deadline (a mint-condition cargo crate pays 700&nbsp;g), catch and cage live animals, or recover lost shipments from the seabed. They also buy commodity crates found (or stolen) around the world, and <button type="button" class="iref" data-preview="guide-assets/loot/gunpowder-barrel.webp" data-cap="Gunpowder Barrel" data-sub="100–200 g — explodes if shot or dropped">gunpowder barrels</button> — handle those gently.</p>
       </div>
     </div>
     <p class="loot-label">Loot they buy <small>· low → high · wiki base prices</small></p>
         <ul class="loot">
-<li><img data-preview="guide-assets/loot/chicken-caged.webp" src="guide-assets/loot/chicken-caged.webp" alt="Chicken (caged)" width="68" height="68" loading="lazy" decoding="async">
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/chicken-caged.webp" src="guide-assets/loot/chicken-caged.webp" alt="Chicken (caged)" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Chicken (caged)</span>
         <span class="price">~10–3,000 g</span>
-        <span class="note">Easiest animal</span></li>
-<li><img data-preview="guide-assets/loot/pig-caged.webp" src="guide-assets/loot/pig-caged.webp" alt="Pig (caged)" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Easiest animal</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/pig-caged.webp" src="guide-assets/loot/pig-caged.webp" alt="Pig (caged)" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Pig (caged)</span>
         <span class="price">~10–3,000 g</span>
-        <span class="note">Keep fed</span></li>
-<li><img data-preview="guide-assets/loot/snake-caged.webp" src="guide-assets/loot/snake-caged.webp" alt="Snake (caged)" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Keep fed</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/snake-caged.webp" src="guide-assets/loot/snake-caged.webp" alt="Snake (caged)" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Snake (caged)</span>
         <span class="price">~10–3,000 g</span>
-        <span class="note">Play music first</span></li>
-<li><img data-preview="guide-assets/loot/crate-of-fine-sugar.webp" src="guide-assets/loot/crate-of-fine-sugar.webp" alt="Crate of Fine Sugar" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Play music first</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/crate-of-fine-sugar.webp" src="guide-assets/loot/crate-of-fine-sugar.webp" alt="Crate of Fine Sugar" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Crate of Fine Sugar</span>
         <span class="price">100–200 g</span>
-        <span class="note">Trade good</span></li>
-<li><img data-preview="guide-assets/loot/gunpowder-barrel.webp" id="img-gunpowder" src="guide-assets/loot/gunpowder-barrel.webp" alt="Gunpowder Barrel" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Trade good</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/gunpowder-barrel.webp" id="img-gunpowder" src="guide-assets/loot/gunpowder-barrel.webp" alt="Gunpowder Barrel" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Gunpowder Barrel</span>
         <span class="price">100–200 g</span>
-        <span class="note">Explodes if shot!</span></li>
-<li><img data-preview="guide-assets/loot/commodity-crate.webp" src="guide-assets/loot/commodity-crate.webp" alt="Commodity crate" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Explodes if shot!</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/commodity-crate.webp" src="guide-assets/loot/commodity-crate.webp" alt="Commodity crate" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Commodity crate</span>
         <span class="price">~100–1,500 g</span>
-        <span class="note">Buy low, sell high</span></li>
-<li><img data-preview="guide-assets/loot/devil-s-roar-trade-crate.webp" src="guide-assets/loot/devil-s-roar-trade-crate.webp" alt="Devil's Roar trade crate" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Buy low, sell high</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/devil-s-roar-trade-crate.webp" src="guide-assets/loot/devil-s-roar-trade-crate.webp" alt="Devil's Roar trade crate" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Devil's Roar trade crate</span>
         <span class="price">~200–3,800 g</span>
-        <span class="note">Roar goods</span></li>
-<li><img data-preview="guide-assets/loot/crate-of-rare-tea.webp" src="guide-assets/loot/crate-of-rare-tea.webp" alt="Crate of Rare Tea" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Roar goods</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/crate-of-rare-tea.webp" src="guide-assets/loot/crate-of-rare-tea.webp" alt="Crate of Rare Tea" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Crate of Rare Tea</span>
-        <span class="price">260–470 g</span></li>
-<li><img data-preview="guide-assets/loot/crate-of-exotic-silks.webp" src="guide-assets/loot/crate-of-exotic-silks.webp" alt="Crate of Exotic Silks" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">260–470 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/crate-of-exotic-silks.webp" src="guide-assets/loot/crate-of-exotic-silks.webp" alt="Crate of Exotic Silks" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Crate of Exotic Silks</span>
-        <span class="price">500–1,000 g</span></li>
-<li><img data-preview="guide-assets/loot/crate-of-luxurious-cloth.webp" src="guide-assets/loot/crate-of-luxurious-cloth.webp" alt="Crate of Luxurious Cloth" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">500–1,000 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/crate-of-luxurious-cloth.webp" src="guide-assets/loot/crate-of-luxurious-cloth.webp" alt="Crate of Luxurious Cloth" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Crate of Luxurious Cloth</span>
         <span class="price">~700 g</span>
-        <span class="note">Keep dry</span></li>
-<li><img data-preview="guide-assets/loot/crate-of-plants.webp" src="guide-assets/loot/crate-of-plants.webp" alt="Crate of Plants" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Keep dry</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/crate-of-plants.webp" src="guide-assets/loot/crate-of-plants.webp" alt="Crate of Plants" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Crate of Plants</span>
         <span class="price">~700 g</span>
-        <span class="note">Keep watered</span></li>
-<li><img data-preview="guide-assets/loot/crate-of-rum-bottles.webp" src="guide-assets/loot/crate-of-rum-bottles.webp" alt="Crate of Rum Bottles" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Keep watered</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/crate-of-rum-bottles.webp" src="guide-assets/loot/crate-of-rum-bottles.webp" alt="Crate of Rum Bottles" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Crate of Rum Bottles</span>
         <span class="price">~700 g</span>
-        <span class="note">Don't smash</span></li>
-<li><img data-preview="guide-assets/loot/crate-of-exquisite-spices.webp" src="guide-assets/loot/crate-of-exquisite-spices.webp" alt="Crate of Exquisite Spices" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Don't smash</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/crate-of-exquisite-spices.webp" src="guide-assets/loot/crate-of-exquisite-spices.webp" alt="Crate of Exquisite Spices" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Crate of Exquisite Spices</span>
-        <span class="price">1,100–1,900 g</span></li>
-<li><img data-preview="guide-assets/loot/prosperous-merchant-manifest.webp" src="guide-assets/loot/prosperous-merchant-manifest.webp" alt="Prosperous Merchant Manifest" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">1,100–1,900 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/prosperous-merchant-manifest.webp" src="guide-assets/loot/prosperous-merchant-manifest.webp" alt="Prosperous Merchant Manifest" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Prosperous Merchant Manifest</span>
         <span class="price">~2,000–4,000 g</span>
-        <span class="note">Shipwreck</span></li>
-<li><img data-preview="guide-assets/loot/crate-of-ancient-bone-dust.webp" src="guide-assets/loot/crate-of-ancient-bone-dust.webp" alt="Crate of Ancient Bone Dust" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Shipwreck</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/crate-of-ancient-bone-dust.webp" src="guide-assets/loot/crate-of-ancient-bone-dust.webp" alt="Crate of Ancient Bone Dust" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Crate of Ancient Bone Dust</span>
         <span class="price">~2,500–3,500 g</span>
-        <span class="note">Fort vault</span></li>
-<li><img data-preview="guide-assets/loot/stronghold-gunpowder-barrel.webp" src="guide-assets/loot/stronghold-gunpowder-barrel.webp" alt="Stronghold Gunpowder Barrel" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Fort vault</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/stronghold-gunpowder-barrel.webp" src="guide-assets/loot/stronghold-gunpowder-barrel.webp" alt="Stronghold Gunpowder Barrel" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Stronghold Gunpowder Barrel</span>
         <span class="price">~2,750–3,500 g</span>
-        <span class="note">Fort keg</span></li>
-<li><img data-preview="guide-assets/loot/revered-merchant-manifest.webp" src="guide-assets/loot/revered-merchant-manifest.webp" alt="Revered Merchant Manifest" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Fort keg</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/revered-merchant-manifest.webp" src="guide-assets/loot/revered-merchant-manifest.webp" alt="Revered Merchant Manifest" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Revered Merchant Manifest</span>
-        <span class="price">~5,000–10,000 g</span></li>
-<li><img data-preview="guide-assets/loot/scrolls-of-charted-waters.webp" src="guide-assets/loot/scrolls-of-charted-waters.webp" alt="Scrolls of Charted Waters" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">~5,000–10,000 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/scrolls-of-charted-waters.webp" src="guide-assets/loot/scrolls-of-charted-waters.webp" alt="Scrolls of Charted Waters" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Scrolls of Charted Waters</span>
         <span class="price">~5,000–15,000 g</span>
-        <span class="note">Raid voyage exclusive · tier by difficulty</span></li>
+        <span class="note">Raid voyage exclusive · tier by difficulty</span></button></li>
 </ul>
     <div class="tip"><b>Deckhand's tip</b><p>Animals drown. Keep cages on the top deck, feed the pigs, and pull out an instrument near snakes — music calms them so they stop spitting venom at you.</p></div>
   </article>
 
   <!-- HUNTER'S CALL -->
-  <article class="co" id="hc" style="--co: var(--co-hc)">
+  <article class="co theme-hc" id="hc">
     <div class="co-head">
-      <div class="shot"><img src="guide-assets/companies/the-hunter-s-call-representatives-at-a-seapost.jpg" alt="The Hunter's Call representatives at a seapost" width="500" height="281"><span class="credit">seaofthieves.wiki.gg</span></div>
+      <div class="shot"><img src="guide-assets/companies/the-hunter-s-call-representatives-at-a-seapost.jpg" alt="The Hunter's Call representatives at a seapost" width="500" height="281" loading="lazy" decoding="async"><span class="credit">seaofthieves.wiki.gg</span></div>
       <div class="co-body">
         <span class="badge">Fishing &amp; cooking</span>
         <h3 class="co-name">The Hunter's Call</h3>
-        <p class="where"><b>Where:</b> <b>not</b> at outposts — find them at the small <span class="iref" data-ref="#img-seapost" data-cap="A seapost" data-sub="Lone shack on stilts — shop, quest board, and the Hunter's Call rep">seaposts</span> (lone shacks on stilts) scattered across the map.</p>
+        <p class="where"><b>Where:</b> <b>not</b> at outposts — find them at the small <button type="button" class="iref" data-preview="guide-assets/tips/seapost.jpg" data-cap="A seapost" data-sub="Lone shack on stilts — shop, quest board, and the Hunter's Call rep">seaposts</button> (lone shacks on stilts) scattered across the map.</p>
         <p>Merrick's family of hunters buys what you catch and cook: every species of fish, plus meat from sharks, snakes, pigs, chickens, krakens and megalodons. Cooking roughly <b>1.5×</b> a fish's price, and trophy (oversized) fish are worth <b>2.5×</b> their normal kin — so a cooked trophy of a rare colour is serious money.</p>
       </div>
     </div>
     <p class="loot-label">Loot they buy <small>· low → high · wiki base prices</small></p>
         <ul class="loot">
-<li><img data-preview="guide-assets/loot/treacherous-plunder.webp" src="guide-assets/loot/treacherous-plunder.webp" alt="Treacherous Plunder" width="68" height="68" loading="lazy" decoding="async">
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/treacherous-plunder.webp" src="guide-assets/loot/treacherous-plunder.webp" alt="Treacherous Plunder" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Treacherous Plunder</span>
         <span class="price">~10–50 g</span>
-        <span class="note">Fishing junk / commendations</span></li>
-<li><img data-preview="guide-assets/loot/cooked-chicken.webp" src="guide-assets/loot/cooked-chicken.webp" alt="Cooked Chicken" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Fishing junk / commendations</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/cooked-chicken.webp" src="guide-assets/loot/cooked-chicken.webp" alt="Cooked Chicken" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Cooked Chicken</span>
         <span class="price">~45 g</span>
-        <span class="note">Must be cooked</span></li>
-<li><img data-preview="guide-assets/loot/cooked-pork.webp" src="guide-assets/loot/cooked-pork.webp" alt="Cooked Pork" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Must be cooked</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/cooked-pork.webp" src="guide-assets/loot/cooked-pork.webp" alt="Cooked Pork" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Cooked Pork</span>
-        <span class="price">~45 g</span></li>
-<li><img data-preview="guide-assets/loot/cooked-shark.webp" src="guide-assets/loot/cooked-shark.webp" alt="Cooked Shark" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">~45 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/cooked-shark.webp" src="guide-assets/loot/cooked-shark.webp" alt="Cooked Shark" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Cooked Shark</span>
-        <span class="price">~45 g</span></li>
-<li><img data-preview="guide-assets/loot/cooked-snake.webp" src="guide-assets/loot/cooked-snake.webp" alt="Cooked Snake" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">~45 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/cooked-snake.webp" src="guide-assets/loot/cooked-snake.webp" alt="Cooked Snake" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Cooked Snake</span>
-        <span class="price">~45 g</span></li>
-<li><img data-preview="guide-assets/loot/pondie-cooked.webp" src="guide-assets/loot/pondie-cooked.webp" alt="Pondie (cooked)" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">~45 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/pondie-cooked.webp" src="guide-assets/loot/pondie-cooked.webp" alt="Pondie (cooked)" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Pondie (cooked)</span>
         <span class="price">~100–500 g</span>
-        <span class="note">Island ponds</span></li>
-<li><img data-preview="guide-assets/loot/islehopper-cooked.webp" src="guide-assets/loot/islehopper-cooked.webp" alt="Islehopper (cooked)" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Island ponds</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/islehopper-cooked.webp" src="guide-assets/loot/islehopper-cooked.webp" alt="Islehopper (cooked)" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Islehopper (cooked)</span>
         <span class="price">~115–565 g</span>
-        <span class="note">Coasts</span></li>
-<li><img data-preview="guide-assets/loot/splashtail-cooked.webp" src="guide-assets/loot/splashtail-cooked.webp" alt="Splashtail (cooked)" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Coasts</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/splashtail-cooked.webp" src="guide-assets/loot/splashtail-cooked.webp" alt="Splashtail (cooked)" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Splashtail (cooked)</span>
         <span class="price">~115–565 g</span>
-        <span class="note">Open water</span></li>
-<li><img data-preview="guide-assets/loot/ancientscale-cooked.webp" src="guide-assets/loot/ancientscale-cooked.webp" alt="Ancientscale (cooked)" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Open water</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/ancientscale-cooked.webp" src="guide-assets/loot/ancientscale-cooked.webp" alt="Ancientscale (cooked)" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Ancientscale (cooked)</span>
         <span class="price">~225–1,410 g</span>
-        <span class="note">Ancient Isles</span></li>
-<li><img data-preview="guide-assets/loot/devilfish-cooked.webp" src="guide-assets/loot/devilfish-cooked.webp" alt="Devilfish (cooked)" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Ancient Isles</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/devilfish-cooked.webp" src="guide-assets/loot/devilfish-cooked.webp" alt="Devilfish (cooked)" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Devilfish (cooked)</span>
         <span class="price">~225–1,410 g</span>
-        <span class="note">Devil's Roar</span></li>
-<li><img data-preview="guide-assets/loot/plentifin-cooked.webp" src="guide-assets/loot/plentifin-cooked.webp" alt="Plentifin (cooked)" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Devil's Roar</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/plentifin-cooked.webp" src="guide-assets/loot/plentifin-cooked.webp" alt="Plentifin (cooked)" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Plentifin (cooked)</span>
         <span class="price">~225–1,410 g</span>
-        <span class="note">Shores of Plenty</span></li>
-<li><img data-preview="guide-assets/loot/wildsplash-cooked.webp" src="guide-assets/loot/wildsplash-cooked.webp" alt="Wildsplash (cooked)" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Shores of Plenty</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/wildsplash-cooked.webp" src="guide-assets/loot/wildsplash-cooked.webp" alt="Wildsplash (cooked)" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Wildsplash (cooked)</span>
         <span class="price">~225–1,410 g</span>
-        <span class="note">The Wilds</span></li>
-<li><img data-preview="guide-assets/loot/trophy-fish.webp" src="guide-assets/loot/trophy-fish.webp" alt="Trophy fish" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">The Wilds</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/trophy-fish.webp" src="guide-assets/loot/trophy-fish.webp" alt="Trophy fish" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Trophy fish</span>
         <span class="price">~285–14,000 g</span>
-        <span class="note">Harder catch</span></li>
-<li><img data-preview="guide-assets/loot/treasured-fish.webp" src="guide-assets/loot/treasured-fish.webp" alt="Treasured Fish" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Harder catch</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/treasured-fish.webp" src="guide-assets/loot/treasured-fish.webp" alt="Treasured Fish" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Treasured Fish</span>
         <span class="price">~350–2,500 g</span>
-        <span class="note">Fishing voyages</span></li>
-<li><img data-preview="guide-assets/loot/battlegill-cooked.webp" src="guide-assets/loot/battlegill-cooked.webp" alt="Battlegill (cooked)" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Fishing voyages</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/battlegill-cooked.webp" src="guide-assets/loot/battlegill-cooked.webp" alt="Battlegill (cooked)" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Battlegill (cooked)</span>
         <span class="price">~375–1,975 g</span>
-        <span class="note">Near forts / skelly ships</span></li>
-<li><img data-preview="guide-assets/loot/stormfish-cooked.webp" src="guide-assets/loot/stormfish-cooked.webp" alt="Stormfish (cooked)" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Near forts / skelly ships</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/stormfish-cooked.webp" src="guide-assets/loot/stormfish-cooked.webp" alt="Stormfish (cooked)" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Stormfish (cooked)</span>
         <span class="price">~375–1,975 g</span>
-        <span class="note">Inside storms</span></li>
-<li><img data-preview="guide-assets/loot/cooked-kraken.webp" src="guide-assets/loot/cooked-kraken.webp" alt="Cooked Kraken" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Inside storms</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/cooked-kraken.webp" src="guide-assets/loot/cooked-kraken.webp" alt="Cooked Kraken" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Cooked Kraken</span>
-        <span class="price">~450 g</span></li>
-<li><img data-preview="guide-assets/loot/cooked-megalodon.webp" src="guide-assets/loot/cooked-megalodon.webp" alt="Cooked Megalodon" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">~450 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/cooked-megalodon.webp" src="guide-assets/loot/cooked-megalodon.webp" alt="Cooked Megalodon" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Cooked Megalodon</span>
-        <span class="price">~450 g</span></li>
-<li><img data-preview="guide-assets/loot/wrecker-cooked.webp" src="guide-assets/loot/wrecker-cooked.webp" alt="Wrecker (cooked)" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">~450 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/wrecker-cooked.webp" src="guide-assets/loot/wrecker-cooked.webp" alt="Wrecker (cooked)" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Wrecker (cooked)</span>
         <span class="price">~565–5,625 g</span>
-        <span class="note">Near wrecks</span></li>
+        <span class="note">Near wrecks</span></button></li>
 </ul>
     <div class="tip"><b>Deckhand's tip</b><p>Watch the fish on the pan: when the eyes go white and it just starts to darken, pull it. Undercooked pays less, charcoal pays almost nothing. Rare fish need the right bait — earthworms, leeches or grubs from barrels.</p></div>
   </article>
 
   <!-- REAPER'S BONES -->
-  <article class="co" id="rb" style="--co: var(--co-rb)">
+  <article class="co theme-rb" id="rb">
     <div class="co-head">
-      <div class="shot"><img src="guide-assets/companies/the-servant-of-the-flame-at-the-reaper-s-hideout.jpg" alt="The Servant of the Flame at The Reaper's Hideout" width="500" height="281"><span class="credit">seaofthieves.wiki.gg</span></div>
+      <div class="shot"><img src="guide-assets/companies/the-servant-of-the-flame-at-the-reaper-s-hideout.jpg" alt="The Servant of the Flame at The Reaper's Hideout" width="500" height="281" loading="lazy" decoding="async"><span class="credit">seaofthieves.wiki.gg</span></div>
       <div class="co-body">
         <span class="badge">High risk · PvP</span>
         <h3 class="co-name">Reaper's Bones</h3>
@@ -1153,110 +520,110 @@
     </div>
     <p class="loot-label">Loot they buy <small>· low → high · wiki base prices</small></p>
         <ul class="loot">
-<li><img data-preview="guide-assets/loot/reaper-s-chest.webp" src="guide-assets/loot/reaper-s-chest.webp" alt="Reaper's Chest" width="68" height="68" loading="lazy" decoding="async">
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/reaper-s-chest.webp" src="guide-assets/loot/reaper-s-chest.webp" alt="Reaper's Chest" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Reaper's Chest</span>
         <span class="price">~20 doubloons</span>
-        <span class="note">Follow the red cloud</span></li>
-<li><img data-preview="guide-assets/loot/any-stolen-company-loot.webp" src="guide-assets/loot/any-stolen-company-loot.webp" alt="Any stolen company loot" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Follow the red cloud</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/any-stolen-company-loot.webp" src="guide-assets/loot/any-stolen-company-loot.webp" alt="Any stolen company loot" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Any stolen company loot</span>
         <span class="price">~60–20,000+ g</span>
-        <span class="note">They buy almost everything</span></li>
-<li><img data-preview="guide-assets/loot/broken-emissary-flag-g1.webp" src="guide-assets/loot/broken-emissary-flag-g1.webp" alt="Broken Emissary Flag (G1)" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">They buy almost everything</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/broken-emissary-flag-g1.webp" src="guide-assets/loot/broken-emissary-flag-g1.webp" alt="Broken Emissary Flag (G1)" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Broken Emissary Flag (G1)</span>
         <span class="price">1,600–2,400 g</span>
-        <span class="note">From sunk emissaries</span></li>
-<li><img data-preview="guide-assets/loot/humble-gift.webp" src="guide-assets/loot/humble-gift.webp" alt="Humble Gift" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">From sunk emissaries</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/humble-gift.webp" src="guide-assets/loot/humble-gift.webp" alt="Humble Gift" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Humble Gift</span>
         <span class="price">~2,750 g</span>
-        <span class="note">Skeleton Camps etc.</span></li>
-<li><img data-preview="guide-assets/loot/generous-gift.webp" src="guide-assets/loot/generous-gift.webp" alt="Generous Gift" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Skeleton Camps etc.</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/generous-gift.webp" src="guide-assets/loot/generous-gift.webp" alt="Generous Gift" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Generous Gift</span>
-        <span class="price">~5,500 g</span></li>
-<li><img data-preview="guide-assets/loot/broken-emissary-flag-g5.webp" id="img-rflag" src="guide-assets/loot/broken-emissary-flag-g5.webp" alt="Broken Emissary Flag (G5)" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">~5,500 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/broken-emissary-flag-g5.webp" id="img-rflag" src="guide-assets/loot/broken-emissary-flag-g5.webp" alt="Broken Emissary Flag (G5)" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Broken Emissary Flag (G5)</span>
         <span class="price">9,500–10,500 g</span>
-        <span class="note">Best flag loot</span></li>
-<li><img data-preview="guide-assets/loot/reaper-s-bounty.webp" src="guide-assets/loot/reaper-s-bounty.webp" alt="Reaper's Bounty" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Best flag loot</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/reaper-s-bounty.webp" src="guide-assets/loot/reaper-s-bounty.webp" alt="Reaper's Bounty" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Reaper's Bounty</span>
         <span class="price">~15,000 g</span>
-        <span class="note">Follow the cloud</span></li>
-<li><img data-preview="guide-assets/loot/box-of-wondrous-secrets.webp" src="guide-assets/loot/box-of-wondrous-secrets.webp" alt="Box of Wondrous Secrets" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Follow the cloud</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/box-of-wondrous-secrets.webp" src="guide-assets/loot/box-of-wondrous-secrets.webp" alt="Box of Wondrous Secrets" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Box of Wondrous Secrets</span>
         <span class="price">~25,000 g</span>
-        <span class="note">Devil's Roar</span></li>
+        <span class="note">Devil's Roar</span></button></li>
 </ul>
-    <div class="tip"><b>Deckhand's tip</b><p>See a ship flying a <span class="iref" data-ref="#img-rflag" data-cap="Reaper's Bones emissary flag" data-sub="The red flag on the back of a hunting ship">red Reaper emissary flag</span>? They can see <i>you</i> on their map table, and they're usually hunting players, not skeletons. As a new pirate, sail the other way.</p></div>
+    <div class="tip"><b>Deckhand's tip</b><p>See a ship flying a <button type="button" class="iref" data-preview="guide-assets/loot/broken-emissary-flag-g5.webp" data-cap="Reaper's Bones emissary flag" data-sub="The red flag on the back of a hunting ship">red Reaper emissary flag</button>? They can see <i>you</i> on their map table, and they're usually hunting players, not skeletons. As a new pirate, sail the other way.</p></div>
   </article>
 
   <!-- ATHENA'S FORTUNE -->
-  <article class="co" id="af" style="--co: var(--co-af)">
+  <article class="co theme-af" id="af">
     <div class="co-head">
-      <div class="shot"><img src="guide-assets/companies/the-ghostly-athena-s-fortune-hideout-beneath-the-tavern.jpg" alt="The ghostly Athena's Fortune hideout beneath the tavern" width="500" height="281"><span class="credit">seaofthieves.wiki.gg</span></div>
+      <div class="shot"><img src="guide-assets/companies/the-ghostly-athena-s-fortune-hideout-beneath-the-tavern.jpg" alt="The ghostly Athena's Fortune hideout beneath the tavern" width="500" height="281" loading="lazy" decoding="async"><span class="credit">seaofthieves.wiki.gg</span></div>
       <div class="co-body">
         <span class="badge">Endgame</span>
         <h3 class="co-name">Athena's Fortune</h3>
-        <p class="where"><b>Where:</b> the Mysterious Stranger inside every outpost <span class="iref" data-ref="#img-tavern" data-cap="An outpost tavern" data-sub="The pub at the heart of every outpost — you spawn here each session">tavern</span>; the ghostly hideout itself opens only for Pirate Legends.</p>
+        <p class="where"><b>Where:</b> the Mysterious Stranger inside every outpost <button type="button" class="iref" data-preview="guide-assets/tips/tavern.jpg" data-cap="An outpost tavern" data-sub="The pub at the heart of every outpost — you spawn here each session">tavern</button>; the ghostly hideout itself opens only for Pirate Legends.</p>
         <p>The Pirate Lord's own company. (The <b>tavern</b>, if you're brand new, is the pub building at every outpost — it's where you first spawn, where you buy grog, and where the Mysterious Stranger leans in the corner.) Reach rank 50 with any three companies to become a <b>Pirate Legend</b>, unlock the hidden hideout under the tavern, and take on legendary voyages for glowing green Athena treasure. Found Athena loot before you're a legend — say, off a sinking legend's ship? The Stranger will still buy it.</p>
       </div>
     </div>
     <p class="loot-label">Loot they buy <small>· low → high · wiki base prices</small></p>
         <ul class="loot">
-<li><img data-preview="guide-assets/loot/chalice-of-ancient-fortune.webp" src="guide-assets/loot/chalice-of-ancient-fortune.webp" alt="Chalice of Ancient Fortune" width="68" height="68" loading="lazy" decoding="async">
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/chalice-of-ancient-fortune.webp" src="guide-assets/loot/chalice-of-ancient-fortune.webp" alt="Chalice of Ancient Fortune" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Chalice of Ancient Fortune</span>
-        <span class="price">570–620 g</span></li>
-<li><img data-preview="guide-assets/loot/crate-of-legendary-voyages.webp" src="guide-assets/loot/crate-of-legendary-voyages.webp" alt="Crate of Legendary Voyages" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">570–620 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/crate-of-legendary-voyages.webp" src="guide-assets/loot/crate-of-legendary-voyages.webp" alt="Crate of Legendary Voyages" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Crate of Legendary Voyages</span>
-        <span class="price">570–620 g</span></li>
-<li><img data-preview="guide-assets/loot/skull-of-ancient-fortune.webp" src="guide-assets/loot/skull-of-ancient-fortune.webp" alt="Skull of Ancient Fortune" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">570–620 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/skull-of-ancient-fortune.webp" src="guide-assets/loot/skull-of-ancient-fortune.webp" alt="Skull of Ancient Fortune" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Skull of Ancient Fortune</span>
-        <span class="price">570–620 g</span></li>
-<li><img data-preview="guide-assets/loot/gilded-relic-of-ancient-fortune.webp" src="guide-assets/loot/gilded-relic-of-ancient-fortune.webp" alt="Gilded Relic of Ancient Fortune" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">570–620 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/gilded-relic-of-ancient-fortune.webp" src="guide-assets/loot/gilded-relic-of-ancient-fortune.webp" alt="Gilded Relic of Ancient Fortune" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Gilded Relic of Ancient Fortune</span>
-        <span class="price">1,400–1,550 g</span></li>
-<li><img data-preview="guide-assets/loot/jar-of-athena-s-incense.webp" src="guide-assets/loot/jar-of-athena-s-incense.webp" alt="Jar of Athena's Incense" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">1,400–1,550 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/jar-of-athena-s-incense.webp" src="guide-assets/loot/jar-of-athena-s-incense.webp" alt="Jar of Athena's Incense" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Jar of Athena's Incense</span>
-        <span class="price">1,400–1,550 g</span></li>
-<li><img data-preview="guide-assets/loot/villainous-skull-of-ancient-fortune.webp" src="guide-assets/loot/villainous-skull-of-ancient-fortune.webp" alt="Villainous Skull of Ancient Fortune" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">1,400–1,550 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/villainous-skull-of-ancient-fortune.webp" src="guide-assets/loot/villainous-skull-of-ancient-fortune.webp" alt="Villainous Skull of Ancient Fortune" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Villainous Skull of Ancient Fortune</span>
-        <span class="price">1,400–1,550 g</span></li>
-<li><img data-preview="guide-assets/loot/artifact-of-legendary-hunger.webp" src="guide-assets/loot/artifact-of-legendary-hunger.webp" alt="Artifact of Legendary Hunger" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">1,400–1,550 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/artifact-of-legendary-hunger.webp" src="guide-assets/loot/artifact-of-legendary-hunger.webp" alt="Artifact of Legendary Hunger" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Artifact of Legendary Hunger</span>
-        <span class="price">2,500–2,750 g</span></li>
-<li><img data-preview="guide-assets/loot/legendary-fortune-keeper.webp" src="guide-assets/loot/legendary-fortune-keeper.webp" alt="Legendary Fortune Keeper" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">2,500–2,750 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/legendary-fortune-keeper.webp" src="guide-assets/loot/legendary-fortune-keeper.webp" alt="Legendary Fortune Keeper" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Legendary Fortune Keeper</span>
-        <span class="price">2,500–2,750 g</span></li>
-<li><img data-preview="guide-assets/loot/offering-of-legendary-goods.webp" src="guide-assets/loot/offering-of-legendary-goods.webp" alt="Offering of Legendary Goods" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">2,500–2,750 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/offering-of-legendary-goods.webp" src="guide-assets/loot/offering-of-legendary-goods.webp" alt="Offering of Legendary Goods" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Offering of Legendary Goods</span>
-        <span class="price">2,500–2,750 g</span></li>
-<li><img data-preview="guide-assets/loot/keg-of-ancient-black-powder.webp" src="guide-assets/loot/keg-of-ancient-black-powder.webp" alt="Keg of Ancient Black Powder" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">2,500–2,750 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/keg-of-ancient-black-powder.webp" src="guide-assets/loot/keg-of-ancient-black-powder.webp" alt="Keg of Ancient Black Powder" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Keg of Ancient Black Powder</span>
         <span class="price">3,000–5,000 g</span>
-        <span class="note">Explodes!</span></li>
-<li><img data-preview="guide-assets/loot/athena-s-relic.webp" src="guide-assets/loot/athena-s-relic.webp" alt="Athena's Relic" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Explodes!</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/athena-s-relic.webp" src="guide-assets/loot/athena-s-relic.webp" alt="Athena's Relic" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Athena's Relic</span>
-        <span class="price">3,500–3,800 g</span></li>
-<li><img data-preview="guide-assets/loot/skull-of-athena-s-blessing.webp" src="guide-assets/loot/skull-of-athena-s-blessing.webp" alt="Skull of Athena's Blessing" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">3,500–3,800 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/skull-of-athena-s-blessing.webp" src="guide-assets/loot/skull-of-athena-s-blessing.webp" alt="Skull of Athena's Blessing" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Skull of Athena's Blessing</span>
-        <span class="price">3,550–3,850 g</span></li>
-<li><img data-preview="guide-assets/loot/talisman-of-fortunes.webp" src="guide-assets/loot/talisman-of-fortunes.webp" alt="Talisman of Fortunes" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">3,550–3,850 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/talisman-of-fortunes.webp" src="guide-assets/loot/talisman-of-fortunes.webp" alt="Talisman of Fortunes" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Talisman of Fortunes</span>
         <span class="price">5,000 g</span>
-        <span class="note">Raid voyage</span></li>
-<li><img data-preview="guide-assets/loot/chest-of-legends.webp" src="guide-assets/loot/chest-of-legends.webp" alt="Chest of Legends" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Raid voyage</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/chest-of-legends.webp" src="guide-assets/loot/chest-of-legends.webp" alt="Chest of Legends" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Chest of Legends</span>
-        <span class="price">8,600–11,000 g</span></li>
-<li><img data-preview="guide-assets/loot/talisman-of-great-fortunes.webp" src="guide-assets/loot/talisman-of-great-fortunes.webp" alt="Talisman of Great Fortunes" width="68" height="68" loading="lazy" decoding="async">
+        <span class="price">8,600–11,000 g</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/talisman-of-great-fortunes.webp" src="guide-assets/loot/talisman-of-great-fortunes.webp" alt="Talisman of Great Fortunes" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Talisman of Great Fortunes</span>
         <span class="price">10,000 g</span>
-        <span class="note">Fort raid</span></li>
-<li><img data-preview="guide-assets/loot/ashen-chest-of-legends.webp" src="guide-assets/loot/ashen-chest-of-legends.webp" alt="Ashen Chest of Legends" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Fort raid</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/ashen-chest-of-legends.webp" src="guide-assets/loot/ashen-chest-of-legends.webp" alt="Ashen Chest of Legends" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Ashen Chest of Legends</span>
         <span class="price">13,000–15,000 g</span>
-        <span class="note">Ashen Athena</span></li>
-<li><img data-preview="guide-assets/loot/talisman-of-magnificent-fortunes.webp" src="guide-assets/loot/talisman-of-magnificent-fortunes.webp" alt="Talisman of Magnificent Fortunes" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Ashen Athena</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/talisman-of-magnificent-fortunes.webp" src="guide-assets/loot/talisman-of-magnificent-fortunes.webp" alt="Talisman of Magnificent Fortunes" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Talisman of Magnificent Fortunes</span>
         <span class="price">15,000 g</span>
-        <span class="note">Fleet / Reaper fort</span></li>
+        <span class="note">Fleet / Reaper fort</span></button></li>
 </ul>
     <div class="tip"><b>Deckhand's tip</b><p>Don't grind for legend status — it arrives on its own. Pick whichever company's voyages you actually enjoy; rank 50 in three of them is a long, happy road, not a checklist.</p></div>
   </article>
@@ -1264,9 +631,9 @@
   <!-- BONUS DUO -->
   <div class="duo">
     <!-- SOVEREIGNS -->
-    <article class="co" id="sov" style="--co: var(--co-sov)">
+    <article class="co theme-sov" id="sov">
       <div class="co-head">
-        <div class="shot"><img src="guide-assets/companies/a-sovereign-representative-in-red-and-gold-uniform.jpg" alt="A Sovereign representative in red and gold uniform" width="235" height="560"><span class="credit">seaofthieves.wiki.gg</span></div>
+        <div class="shot"><img src="guide-assets/companies/a-sovereign-representative-in-red-and-gold-uniform.jpg" alt="A Sovereign representative in red and gold uniform" width="235" height="560" loading="lazy" decoding="async"><span class="credit">seaofthieves.wiki.gg</span></div>
         <div class="co-body">
           <span class="badge">Quality of life</span>
           <h3 class="co-name">The Sovereigns</h3>
@@ -1278,9 +645,9 @@
     </article>
 
     <!-- SMUGGLERS' LEAGUE -->
-    <article class="co" id="sl" style="--co: var(--co-sl)">
+    <article class="co theme-sl" id="sl">
       <div class="co-head">
-        <div class="shot"><img src="guide-assets/companies/smugglers-league-members-at-a-hidden-hideout.jpg" alt="Smugglers' League members at a hidden hideout" width="500" height="281"><span class="credit">seaofthieves.wiki.gg</span></div>
+        <div class="shot"><img src="guide-assets/companies/smugglers-league-members-at-a-hidden-hideout.jpg" alt="Smugglers' League members at a hidden hideout" width="500" height="281" loading="lazy" decoding="async"><span class="credit">seaofthieves.wiki.gg</span></div>
         <div class="co-body">
           <span class="badge">New · 2025</span>
           <h3 class="co-name">Smugglers' League</h3>
@@ -1290,22 +657,22 @@
       </div>
       <p class="loot-label">Contraband they buy <small>· low → high · wiki base prices</small></p>
           <ul class="loot">
-<li><img data-preview="guide-assets/loot/smuggler-contraband-crates.webp" src="guide-assets/loot/smuggler-contraband-crates.webp" alt="Smuggler contraband crates" width="68" height="68" loading="lazy" decoding="async">
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/smuggler-contraband-crates.webp" src="guide-assets/loot/smuggler-contraband-crates.webp" alt="Smuggler contraband crates" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Smuggler contraband crates</span>
         <span class="price">~500–5,000 g</span>
-        <span class="note">Hideouts only · Reapers refuse these</span></li>
-<li><img data-preview="guide-assets/loot/smugglers-cache-heist-loot.webp" src="guide-assets/loot/smugglers-cache-heist-loot.webp" alt="Smugglers' cache / heist loot" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Hideouts only · Reapers refuse these</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/smugglers-cache-heist-loot.webp" src="guide-assets/loot/smugglers-cache-heist-loot.webp" alt="Smugglers' cache / heist loot" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Smugglers' cache / heist loot</span>
         <span class="price">~1,000–10,000+ g</span>
-        <span class="note">Caches, wrecks, heists</span></li>
-<li><img data-preview="guide-assets/loot/skull-of-siren-sorrow.webp" src="guide-assets/loot/skull-of-siren-sorrow.webp" alt="Skull of Siren Sorrow" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Caches, wrecks, heists</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/skull-of-siren-sorrow.webp" src="guide-assets/loot/skull-of-siren-sorrow.webp" alt="Skull of Siren Sorrow" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Skull of Siren Sorrow</span>
         <span class="price">2,500 g</span>
-        <span class="note">Smuggler only · sonic weapon</span></li>
-<li><img data-preview="guide-assets/loot/skull-of-arms.webp" src="guide-assets/loot/skull-of-arms.webp" alt="Skull of Arms" width="68" height="68" loading="lazy" decoding="async">
+        <span class="note">Smuggler only · sonic weapon</span></button></li>
+<li><button type="button" class="loot-preview"><img data-preview="guide-assets/loot/skull-of-arms.webp" src="guide-assets/loot/skull-of-arms.webp" alt="Skull of Arms" width="68" height="68" loading="lazy" decoding="async">
         <span class="nm">Skull of Arms</span>
         <span class="price">5,000 g</span>
-        <span class="note">Reaper Fortress · opens weapon caches</span></li>
+        <span class="note">Reaper Fortress · opens weapon caches</span></button></li>
 </ul>
       <div class="tip"><b>Deckhand's tip</b><p>Contraband only sells at hideouts, so learn where your nearest one is before you load a deck full of hot goods.</p></div>
     </article>
@@ -1318,77 +685,87 @@
   <section class="block" id="quests">
     <span class="eyebrow">Gold Hoarders &amp; friends</span>
     <h2>Quest &amp; voyage guide</h2>
-    <p class="lede">Sorted easy → hard. Hover any <span class="iref" data-ref="#img-shovel" data-cap="Shovel">dotted term</span> for a real game picture. Gold is base (no emissary).</p>
+    <p class="lede">Sorted easy → hard. Hover any <button type="button" class="iref" data-preview="guide-assets/tips/shovel.jpg" data-cap="Shovel">dotted term</button> for a real game picture. Gold is base (no emissary).</p>
 
     <div class="quest-grid">
-      <article class="quest" style="--co: var(--co-hc)">
-        <img class="quest-shot" src="guide-assets/quests/fishing-rod-from-sea-of-thieves.jpg" alt="Fishing rod from Sea of Thieves" width="200" height="200">
+      <article class="quest theme-hc">
+        <img class="quest-shot" src="guide-assets/quests/fishing-rod-from-sea-of-thieves.jpg" alt="Fishing rod from Sea of Thieves" width="200" height="200" loading="lazy" decoding="async">
         <h3>Hunter's Call fishing / cooking</h3>
         <div class="meta">
           <span class="pill gold">~50–1,400 g per catch</span>
           <span class="pill diff-easy">Difficulty · Easy</span>
         </div>
-        <p class="do"><b>What to do:</b> Cast a <span class="iref" data-ref="#img-fishing" data-cap="Fishing Rod">fishing rod</span> with the right bait, cook meat on the stove, sell at a <span class="iref" data-ref="#img-seapost" data-cap="A seapost" data-sub="Hunter's Call lives here">seapost</span> Hunter's Call rep.</p>
+        <p class="do"><b>What to do:</b> Cast a <button type="button" class="iref" data-preview="guide-assets/quests/fishing-rod-from-sea-of-thieves.jpg" data-cap="Fishing Rod">fishing rod</button> with the right bait, cook meat on the stove, sell at a <button type="button" class="iref" data-preview="guide-assets/tips/seapost.jpg" data-cap="A seapost" data-sub="Hunter's Call lives here">seapost</button> Hunter's Call rep.</p>
         <div class="tips"><b>Tips</b> Trophy / rare fish pay far more. Check the in-game fishing guide for bait and waters.</div>
       </article>
 
-      <article class="quest" style="--co: var(--co-gh)">
-        <img class="quest-shot" src="guide-assets/quests/x-marks-the-spot-treasure-map.jpg" alt="X marks the spot treasure map" width="640" height="356">
+      <article class="quest theme-gh">
+        <img class="quest-shot" src="guide-assets/quests/x-marks-the-spot-treasure-map.jpg" alt="X marks the spot treasure map" width="640" height="356" loading="lazy" decoding="async">
         <h3>Buried treasure (X marks the spot)</h3>
         <div class="meta">
           <span class="pill gold">~300–2,500 g</span>
           <span class="pill diff-easy">Difficulty · Easy</span>
           <span class="pill">Best first voyage</span>
         </div>
-        <p class="do"><b>What to do:</b> Open the quest map, match the island on your <span class="iref" data-ref="#img-maptable" data-cap="Map table">map table</span>, sail there, dig every red X with your <span class="iref" data-ref="#img-shovel" data-cap="Shovel">shovel</span>. Sell chests at the Gold Hoarders tent.</p>
+        <p class="do"><b>What to do:</b> Open the quest map, match the island on your <button type="button" class="iref" data-preview="guide-assets/quests/merchant-cargo-crate.jpg" data-cap="Map table">map table</button>, sail there, dig every red X with your <button type="button" class="iref" data-preview="guide-assets/tips/shovel.jpg" data-cap="Shovel">shovel</button>. Sell chests at the Gold Hoarders tent.</p>
         <div class="tips"><b>Tips</b> Rotate the parchment until coastlines match. Stack loot on the beach, then harpoon aboard.</div>
       </article>
 
-      <article class="quest" style="--co: var(--co-ma)">
-        <img class="quest-shot" src="guide-assets/quests/merchant-cargo-crate.jpg" alt="Merchant cargo crate" width="900" height="506">
+      <article class="quest theme-ma">
+        <img class="quest-shot" src="guide-assets/quests/merchant-cargo-crate.jpg" alt="Merchant cargo crate" width="900" height="506" loading="lazy" decoding="async">
         <h3>Merchant cargo / animals</h3>
         <div class="meta">
           <span class="pill gold">~200–2,000 g</span>
           <span class="pill diff-easy">Difficulty · Easy</span>
           <span class="pill">Timers</span>
         </div>
-        <p class="do"><b>What to do:</b> Pick up <span class="iref" data-ref="#img-cargo" data-cap="Cargo crate">cargo crates</span> or animal cages from the Merchant, deliver before the deadline. Damaged cargo pays less.</p>
+        <p class="do"><b>What to do:</b> Pick up <button type="button" class="iref" data-preview="guide-assets/quests/merchant-cargo-crate.jpg" data-cap="Cargo crate">cargo crates</button> or animal cages from the Merchant, deliver before the deadline. Damaged cargo pays less.</p>
         <div class="tips"><b>Tips</b> Feed animals. In storms, stow cargo below. Leave early — timers are real.</div>
       </article>
 
-      <article class="quest" style="--co: var(--co-gh)">
-        <img class="quest-shot" src="guide-assets/quests/riddle-map-parchment.jpg" alt="Riddle map parchment" width="640" height="338">
+      <article class="quest theme-gh">
+        <img class="quest-shot" src="guide-assets/quests/riddle-map-parchment.jpg" alt="Riddle map parchment" width="640" height="338" loading="lazy" decoding="async">
         <h3>Riddle map</h3>
         <div class="meta">
           <span class="pill gold">~400–1,800 g</span>
           <span class="pill diff-med">Difficulty · Medium</span>
         </div>
-        <p class="do"><b>What to do:</b> On a large island, follow each riddle line to a landmark. Raise your <span class="iref" data-ref="#img-lantern" data-cap="Lantern">lantern</span>, play an instrument, or dig as asked. Last line leads to a <span class="iref" data-ref="#img-collectors" data-cap="Collector's Chest">Collector's Chest</span> with gold and artefacts.</p>
+        <p class="do"><b>What to do:</b> On a large island, follow each riddle line to a landmark. Raise your <button type="button" class="iref" data-preview="guide-assets/fight/lantern.jpg" data-cap="Lantern">lantern</button>, play an instrument, or dig as asked. Last line leads to a <button type="button" class="iref" data-preview="guide-assets/tips/collectors.jpg" data-cap="Collector's Chest">Collector's Chest</button> with gold and artefacts.</p>
         <div class="tips"><b>Tips</b> Walk with the riddle open. Face the stated direction before counting paces.</div>
       </article>
 
-      <article class="quest" style="--co: var(--co-oos)">
-        <img class="quest-shot" src="guide-assets/quests/order-of-souls-bounty-skull.jpg" alt="Order of Souls bounty skull" width="329" height="434">
+      <article class="quest theme-oos">
+        <img class="quest-shot" src="guide-assets/quests/order-of-souls-bounty-skull.jpg" alt="Order of Souls bounty skull" width="329" height="434" loading="lazy" decoding="async">
         <h3>Order of Souls bounty</h3>
         <div class="meta">
           <span class="pill gold">~500–3,500 g</span>
           <span class="pill diff-med">Difficulty · Medium</span>
           <span class="pill">Combat</span>
         </div>
-        <p class="do"><b>What to do:</b> Clear skeleton waves, defeat the captain, grab the glowing <span class="iref" data-ref="#img-bounty" data-cap="Bounty skull">bounty skull</span>, sell to the Order of Souls mystic.</p>
-        <div class="tips"><b>Tips</b> Kill gunners first. <span class="iref" data-ref="#img-goldskel" data-cap="Gold skeleton">Gold skeletons</span> hate water and <span class="iref" data-ref="#img-firebomb" data-cap="Firebomb">firebombs</span>; plant skeletons hate fire.</div>
+        <p class="do"><b>What to do:</b> Clear skeleton waves, defeat the captain, grab the glowing <button type="button" class="iref" data-preview="guide-assets/quests/order-of-souls-bounty-skull.jpg" data-cap="Bounty skull">bounty skull</button>, sell to the Order of Souls mystic.</p>
+        <div class="tips"><b>Tips</b> Kill gunners first. <button type="button" class="iref" data-preview="guide-assets/fight/gold-skeleton.jpg" data-cap="Gold skeleton">Gold skeletons</button> hate water and <button type="button" class="iref" data-preview="guide-assets/fight/firebomb.jpg" data-cap="Firebomb">firebombs</button>; plant skeletons hate fire.</div>
       </article>
 
-      <article class="quest" style="--co: var(--co-gh)">
-        <img class="quest-shot" src="guide-assets/quests/merchant-cargo-crate.jpg" alt="Gold Hoarders treasure vault" width="900" height="506">
+      <article class="quest theme-gh">
+        <img class="quest-shot" src="guide-assets/quests/merchant-cargo-crate.jpg" alt="Gold Hoarders treasure vault" width="900" height="506" loading="lazy" decoding="async">
         <h3>Treasure vault (Wayfinder)</h3>
         <div class="meta">
           <span class="pill gold">Key ~1,000–4,000 g · Vault ~5,000–15,000 g+</span>
           <span class="pill diff-hard">Difficulty · Hard</span>
           <span class="pill">Needs rank ~25+</span>
         </div>
-        <p class="do"><b>What to do:</b> Follow the <span class="iref" data-ref="#img-wayfinder" data-cap="Golden Wayfinder compass">Golden Wayfinder</span> — dig where the needle spins. Assemble the torn map, dig the <span class="iref" data-ref="#img-vaultkey" data-cap="Treasure Vault Key">vault key</span>. Sell it, or open the timed vault and loot (incl. Chest of Ancient Tributes).</p>
+        <p class="do"><b>What to do:</b> Follow the <button type="button" class="iref" data-preview="guide-assets/tips/wayfinder.jpg" data-cap="Golden Wayfinder compass">Golden Wayfinder</button> — dig where the needle spins. Assemble the torn map, dig the <button type="button" class="iref" data-preview="guide-assets/quests/x-marks-the-spot-treasure-map.jpg" data-cap="Treasure Vault Key">vault key</button>. Sell it, or open the timed vault and loot (incl. Chest of Ancient Tributes).</p>
         <div class="tips"><b>Tips</b> Skeletons spawn on parchment digs. Quiet server → run the vault; Reapers nearby → sell the key.</div>
+      </article>
+      <article class="quest theme-teal">
+        <h3>Diving to Voyages &amp; Tall Tales</h3>
+        <div class="meta"><span class="pill diff-easy">Fast travel</span><span class="pill">Changes server</span></div>
+        <p class="do"><b>Before you dive:</b> sell ordinary treasure first. Diving moves your ship to another server near the Voyage or Tall Tale start, destroys normal treasure aboard, and starts an 8-minute dive cooldown. Resource crates stay.</p>
+      </article>
+      <article class="quest theme-rb">
+        <h3>Skull of Siren Song respawns</h3>
+        <div class="meta"><span class="pill diff-hard">Contested quest</span><span class="pill">Situational respawn</span></div>
+        <p class="do"><b>What joining changes:</b> your ship receives a closer respawn only when it sinks near a Siren Song objective or quest item. Joining is not a general close-respawn switch elsewhere on the server.</p>
       </article>
     </div>
   </section>
@@ -1406,7 +783,7 @@
     </div>
 
     <div class="event-grid">
-      <article class="event-card" style="--event:#63a977">
+      <article class="event-card event-skeleton-fort">
         <div class="event-visuals">
           <figure class="event-shot">
             <img src="guide-assets/events/skeleton-fort.png" width="1290" height="1440" loading="lazy" alt="Green-eyed Skeleton Fort skull cloud over the sea">
@@ -1430,7 +807,7 @@
         </div>
       </article>
 
-      <article class="event-card" style="--event:#d25448">
+      <article class="event-card event-fortune">
         <div class="event-visuals">
           <figure class="event-shot">
             <img src="guide-assets/events/fort-of-fortune.png" width="1124" height="598" loading="lazy" alt="Cracked red Fort of Fortune skull cloud">
@@ -1454,7 +831,7 @@
         </div>
       </article>
 
-      <article class="event-card" style="--event:#b04a4a">
+      <article class="event-card event-reaper-fortress">
         <div class="event-visuals">
           <figure class="event-shot">
             <img src="guide-assets/events/reaper-fortress-marker.jpg" width="1000" height="625" loading="lazy" alt="Reaper Fortress skull cloud wearing a hat with glowing red eyes">
@@ -1478,7 +855,7 @@
         </div>
       </article>
 
-      <article class="event-card" style="--event:#589a91">
+      <article class="event-card event-skeleton-fleet">
         <div class="event-visuals">
           <figure class="event-shot">
             <img src="guide-assets/events/skeleton-fleet.png" width="734" height="569" loading="lazy" alt="Skeleton Fleet ship-shaped storm cloud">
@@ -1502,7 +879,7 @@
         </div>
       </article>
 
-      <article class="event-card" style="--event:#54a99b">
+      <article class="event-card event-ghost-fleet">
         <div class="event-visuals">
           <figure class="event-shot">
             <img src="guide-assets/events/ghost-fleet.png" width="1445" height="964" loading="lazy" alt="Thin green Ghost Fleet tornado over an island">
@@ -1526,7 +903,7 @@
         </div>
       </article>
 
-      <article class="event-card" style="--event:#dd713f">
+      <article class="event-card event-ashen-winds">
         <div class="event-visuals">
           <figure class="event-shot">
             <img class="event-marker-art" src="guide-assets/events/ashen-winds-tornado-distant.png" width="1000" height="611" loading="lazy" alt="Ashen Winds tornado seen from far across the sea">
@@ -1550,7 +927,7 @@
         </div>
       </article>
 
-      <article class="event-card" style="--event:#e4933a">
+      <article class="event-card event-burning-blade">
         <div class="event-visuals">
           <figure class="event-shot">
             <img src="guide-assets/events/burning-blade-marker.png" width="1400" height="788" loading="lazy" alt="Fiery orange Burning Blade beacon seen through a spyglass">
@@ -1586,75 +963,75 @@
   <section class="block" id="fight">
     <span class="eyebrow">Steel and powder</span>
     <h2>Fight tips — weapons vs enemies</h2>
-    <p class="lede">Default loadout: <span class="iref" data-ref="#img-cutlass" data-cap="Cutlass">cutlass</span> + <span class="iref" data-ref="#img-pistol" data-cap="Flintlock pistol">pistol</span> (or <span class="iref" data-ref="#img-eor" data-cap="Eye of Reach">Eye of Reach</span>). Real photos of each enemy and the tool that beats them.</p>
+    <p class="lede">Default loadout: <button type="button" class="iref" data-preview="guide-assets/fight/cutlass.jpg" data-cap="Cutlass">cutlass</button> + <button type="button" class="iref" data-preview="guide-assets/tips/pistol.jpg" data-cap="Flintlock pistol">pistol</button> (or <button type="button" class="iref" data-preview="guide-assets/fight/eye-of-reach.jpg" data-cap="Eye of Reach">Eye of Reach</button>). Real photos of each enemy and the tool that beats them.</p>
 
     <div class="fight-grid">
       <article class="fight-card">
       <div class="shots">
         <figure><img class="enemy-full fight-preview" src="guide-assets/fight/regular-skeletons.png" width="409" height="427" loading="lazy" alt="Full-body regular skeleton charging with a cutlass"><figcaption>Enemy</figcaption></figure>
-        <figure><img src="guide-assets/fight/cutlass.jpg" alt="Cutlass" width="640" height="640"><figcaption>Best tool</figcaption></figure>
+        <figure><img src="guide-assets/fight/cutlass.jpg" alt="Cutlass" width="640" height="640" loading="lazy" decoding="async"><figcaption>Best tool</figcaption></figure>
       </div>
-      <div class="fbody"><b>Regular skeletons</b><p>2–3 sword hits or a <span class="iref" data-ref="#img-pistol" data-cap="Flintlock pistol">pistol</span> shot. Kill snipers first; keep moving.</p></div>
+      <div class="fbody"><b>Regular skeletons</b><p>2–3 sword hits or a <button type="button" class="iref" data-preview="guide-assets/tips/pistol.jpg" data-cap="Flintlock pistol">pistol</button> shot. Kill snipers first; keep moving.</p></div>
     </article>
       <article class="fight-card">
       <div class="shots">
-        <figure><img src="guide-assets/fight/gold-skeleton.jpg" alt="Gold skeleton" width="640" height="610"><figcaption>Enemy</figcaption></figure>
-        <figure><img src="guide-assets/fight/firebomb.jpg" alt="Firebomb" width="579" height="696"><figcaption>Best tool</figcaption></figure>
+        <figure><img src="guide-assets/fight/gold-skeleton.jpg" alt="Gold skeleton" width="640" height="610" loading="lazy" decoding="async"><figcaption>Enemy</figcaption></figure>
+        <figure><img src="guide-assets/fight/firebomb.jpg" alt="Firebomb" width="579" height="696" loading="lazy" decoding="async"><figcaption>Best tool</figcaption></figure>
       </div>
-      <div class="fbody"><b>Gold skeletons</b><p>Sword barely scratches metal. Splash with a <span class="iref" data-ref="#img-bucket" data-cap="Bucket">bucket</span>, then shoot — or burn with <span class="iref" data-ref="#img-firebomb" data-cap="Firebomb">firebombs</span>.</p></div>
+      <div class="fbody"><b>Gold skeletons</b><p>Sword barely scratches metal. Splash with a <button type="button" class="iref" data-preview="guide-assets/tips/bucket.jpg" data-cap="Bucket">bucket</button>, then shoot — or burn with <button type="button" class="iref" data-preview="guide-assets/fight/firebomb.jpg" data-cap="Firebomb">firebombs</button>.</p></div>
     </article>
       <article class="fight-card">
       <div class="shots">
-        <figure><img src="guide-assets/fight/plant-skeleton.jpg" alt="Plant skeleton" width="640" height="337"><figcaption>Enemy</figcaption></figure>
-        <figure><img src="guide-assets/fight/firebomb.jpg" alt="Firebomb" width="579" height="696"><figcaption>Best tool</figcaption></figure>
+        <figure><img src="guide-assets/fight/plant-skeleton.jpg" alt="Plant skeleton" width="640" height="337" loading="lazy" decoding="async"><figcaption>Enemy</figcaption></figure>
+        <figure><img src="guide-assets/fight/firebomb.jpg" alt="Firebomb" width="579" height="696" loading="lazy" decoding="async"><figcaption>Best tool</figcaption></figure>
       </div>
-      <div class="fbody"><b>Plant / green skeletons</b><p><span class="iref" data-ref="#img-firebomb" data-cap="Firebomb">Firebombs</span> strips their regen. Finish with <span class="iref" data-ref="#img-cutlass" data-cap="Cutlass">cutlass</span>.</p></div>
+      <div class="fbody"><b>Plant / green skeletons</b><p><button type="button" class="iref" data-preview="guide-assets/fight/firebomb.jpg" data-cap="Firebomb">Firebombs</button> strips their regen. Finish with <button type="button" class="iref" data-preview="guide-assets/fight/cutlass.jpg" data-cap="Cutlass">cutlass</button>.</p></div>
     </article>
       <article class="fight-card">
       <div class="shots">
-        <figure><img src="guide-assets/fight/shadow-skeleton.jpg" alt="Shadow skeleton" width="459" height="514"><figcaption>Enemy</figcaption></figure>
-        <figure><img src="guide-assets/fight/lantern.jpg" alt="Lantern" width="200" height="200"><figcaption>Best tool</figcaption></figure>
+        <figure><img src="guide-assets/fight/shadow-skeleton.jpg" alt="Shadow skeleton" width="459" height="514" loading="lazy" decoding="async"><figcaption>Enemy</figcaption></figure>
+        <figure><img src="guide-assets/fight/lantern.jpg" alt="Lantern" width="200" height="200" loading="lazy" decoding="async"><figcaption>Best tool</figcaption></figure>
       </div>
-      <div class="fbody"><b>Shadow skeletons</b><p>Raise your <span class="iref" data-ref="#img-lantern" data-cap="Lantern">lantern</span> to make them solid, then hit. In the dark they shrug off damage.</p></div>
+      <div class="fbody"><b>Shadow skeletons</b><p>Raise your <button type="button" class="iref" data-preview="guide-assets/fight/lantern.jpg" data-cap="Lantern">lantern</button> to make them solid, then hit. In the dark they shrug off damage.</p></div>
     </article>
       <article class="fight-card">
       <div class="shots">
         <figure><img class="enemy-full fight-preview" src="guide-assets/fight/skeleton-captain.png" width="960" height="1300" loading="lazy" alt="Full-body Skeleton Captain wearing a hat and blue clothing"><figcaption>Enemy</figcaption></figure>
-        <figure><img src="guide-assets/fight/cutlass.jpg" alt="Cutlass" width="640" height="640"><figcaption>Best tool</figcaption></figure>
+        <figure><img src="guide-assets/fight/cutlass.jpg" alt="Cutlass" width="640" height="640" loading="lazy" decoding="async"><figcaption>Best tool</figcaption></figure>
       </div>
       <div class="fbody"><b>Skeleton captains</b><p>Same type rules as their crew. Eat mid-fight; drop loot before swinging.</p></div>
     </article>
       <article class="fight-card">
       <div class="shots">
-        <figure><img src="guide-assets/fight/phantom.jpg" alt="Phantom" width="280" height="280"><figcaption>Enemy</figcaption></figure>
-        <figure><img src="guide-assets/fight/blunderbuss.jpg" alt="Blunderbuss" width="640" height="640"><figcaption>Best tool</figcaption></figure>
+        <figure><img src="guide-assets/fight/phantom.jpg" alt="Phantom" width="280" height="280" loading="lazy" decoding="async"><figcaption>Enemy</figcaption></figure>
+        <figure><img src="guide-assets/fight/blunderbuss.jpg" alt="Blunderbuss" width="640" height="640" loading="lazy" decoding="async"><figcaption>Best tool</figcaption></figure>
       </div>
-      <div class="fbody"><b>Phantoms</b><p>Melee shreds them. A <span class="iref" data-ref="#img-blunder" data-cap="Blunderbuss">blunderbuss</span> deletes close packs.</p></div>
+      <div class="fbody"><b>Phantoms</b><p>Melee shreds them. A <button type="button" class="iref" data-preview="guide-assets/fight/blunderbuss.jpg" data-cap="Blunderbuss">blunderbuss</button> deletes close packs.</p></div>
     </article>
       <article class="fight-card">
       <div class="shots">
-        <figure><img src="guide-assets/fight/ocean-crawler.jpg" alt="Ocean crawler" width="640" height="360"><figcaption>Enemy</figcaption></figure>
-        <figure><img src="guide-assets/fight/eye-of-reach.jpg" alt="Eye of Reach" width="640" height="640"><figcaption>Best tool</figcaption></figure>
+        <figure><img src="guide-assets/fight/ocean-crawler.jpg" alt="Ocean crawler" width="640" height="360" loading="lazy" decoding="async"><figcaption>Enemy</figcaption></figure>
+        <figure><img src="guide-assets/fight/eye-of-reach.jpg" alt="Eye of Reach" width="640" height="640" loading="lazy" decoding="async"><figcaption>Best tool</figcaption></figure>
       </div>
-      <div class="fbody"><b>Ocean crawlers</b><p>Kill Eel-ectrics first. Keep range with <span class="iref" data-ref="#img-pistol" data-cap="Flintlock pistol">pistol</span> / <span class="iref" data-ref="#img-eor" data-cap="Eye of Reach">Eye of Reach</span>; avoid Hermit poison.</p></div>
+      <div class="fbody"><b>Ocean crawlers</b><p>Kill Eel-ectrics first. Keep range with <button type="button" class="iref" data-preview="guide-assets/tips/pistol.jpg" data-cap="Flintlock pistol">pistol</button> / <button type="button" class="iref" data-preview="guide-assets/fight/eye-of-reach.jpg" data-cap="Eye of Reach">Eye of Reach</button>; avoid Hermit poison.</p></div>
     </article>
       <article class="fight-card">
       <div class="shots">
         <figure><img class="enemy-action fight-preview" src="guide-assets/fight/enemy-pirate.jpg" width="1200" height="675" loading="lazy" alt="Enemy pirate boarding a ship during close combat"><figcaption>Enemy</figcaption></figure>
-        <figure><img src="guide-assets/fight/eye-of-reach-1a469e.jpg" alt="Eye of Reach" width="640" height="640"><figcaption>Best tool</figcaption></figure>
+        <figure><img src="guide-assets/fight/eye-of-reach.jpg" alt="Eye of Reach" width="640" height="640" loading="lazy" decoding="async"><figcaption>Best tool</figcaption></figure>
       </div>
-      <div class="fbody"><b>Other pirates (PvP)</b><p><span class="iref" data-ref="#img-blunder" data-cap="Blunderbuss">Blunderbuss</span> for ladders; <span class="iref" data-ref="#img-eor" data-cap="Eye of Reach">Eye of Reach</span> for decks; <span class="iref" data-ref="#img-cutlass" data-cap="Cutlass">sword</span> for movement. Carry <span class="iref" data-ref="#img-blunderbomb" data-cap="Blunderbomb">blunderbombs</span>.</p></div>
+      <div class="fbody"><b>Other pirates (PvP)</b><p><button type="button" class="iref" data-preview="guide-assets/fight/blunderbuss.jpg" data-cap="Blunderbuss">Blunderbuss</button> for ladders; <button type="button" class="iref" data-preview="guide-assets/fight/eye-of-reach.jpg" data-cap="Eye of Reach">Eye of Reach</button> for decks; <button type="button" class="iref" data-preview="guide-assets/fight/cutlass.jpg" data-cap="Cutlass">sword</button> for movement. Carry <button type="button" class="iref" data-preview="guide-assets/tips/blunderbomb.jpg" data-cap="Blunderbomb">blunderbombs</button>.</p></div>
     </article>
     </div>
 
     <div class="quest-grid">
-      <article class="quest" style="--co: var(--co-rb)">
+      <article class="quest theme-rb">
         <h3>Best all-round loadouts</h3>
-        <p><b>Islands / PvE:</b> <span class="iref" data-ref="#img-cutlass" data-cap="Cutlass">Cutlass</span> + <span class="iref" data-ref="#img-pistol" data-cap="Flintlock pistol">Pistol</span></p>
-        <p><b>Ship fights:</b> <span class="iref" data-ref="#img-eor" data-cap="Eye of Reach">Eye of Reach</span> + <span class="iref" data-ref="#img-blunder" data-cap="Blunderbuss">Blunderbuss</span></p>
-        <p><b>Boarding:</b> <span class="iref" data-ref="#img-blunder" data-cap="Blunderbuss">Blunderbuss</span> + <span class="iref" data-ref="#img-cutlass" data-cap="Cutlass">Cutlass</span></p>
+        <p><b>Islands / PvE:</b> <button type="button" class="iref" data-preview="guide-assets/fight/cutlass.jpg" data-cap="Cutlass">Cutlass</button> + <button type="button" class="iref" data-preview="guide-assets/tips/pistol.jpg" data-cap="Flintlock pistol">Pistol</button></p>
+        <p><b>Ship fights:</b> <button type="button" class="iref" data-preview="guide-assets/fight/eye-of-reach.jpg" data-cap="Eye of Reach">Eye of Reach</button> + <button type="button" class="iref" data-preview="guide-assets/fight/blunderbuss.jpg" data-cap="Blunderbuss">Blunderbuss</button></p>
+        <p><b>Boarding:</b> <button type="button" class="iref" data-preview="guide-assets/fight/blunderbuss.jpg" data-cap="Blunderbuss">Blunderbuss</button> + <button type="button" class="iref" data-preview="guide-assets/fight/cutlass.jpg" data-cap="Cutlass">Cutlass</button></p>
       </article>
-      <article class="quest" style="--co: var(--teal)">
+      <article class="quest theme-teal">
         <h3>Habits that keep you alive</h3>
         <p>Reload at ammo crates. Eat cooked food. Block with sword. Never dig while holding loot — drop it, fight, pick up.</p>
       </article>
@@ -1669,15 +1046,15 @@
         </div>
       </div>
       <div class="tip-grid">
-        <article class="tip-card" style="--tip-accent:var(--seal)">
+        <article class="tip-card accent-seal">
           <h4>Heal before the next shot</h4>
           <p>Dodge incoming fire, break line of sight, then eat. Keep strong food in your pockets and do not wait for the screen to turn fully red.</p>
         </article>
-        <article class="tip-card" style="--tip-accent:var(--co-ma)">
+        <article class="tip-card accent-ma">
           <h4>Douse yourself with the bucket</h4>
           <p>Fill your bucket, then use its secondary action to pour water over yourself. A firebomb's secondary action only offers it to another pirate.</p>
         </article>
-        <article class="tip-card" style="--tip-accent:var(--teal)">
+        <article class="tip-card accent-teal">
           <h4>Listen for the ladder splash</h4>
           <p>A swimmer grabbing your ladder makes a clear splash. Check both ladders, then use a blunderbuss or blunderbomb to knock the boarder away.</p>
         </article>
@@ -1685,11 +1062,11 @@
           <h4>Raise sails to tighten the turn</h4>
           <p>Partly raise sails during a close fight. Your ship slows and turns more tightly, which keeps your cannons aimed without dropping anchor.</p>
         </article>
-        <article class="tip-card" style="--tip-accent:var(--co-rb)">
+        <article class="tip-card accent-rb">
           <h4>Fire adds pressure, not a quick sink</h4>
           <p>Fire forces a crew away from cannons and repairs, but one patch takes several minutes to make holes. A keg blast is what can open 4 hull holes at once.</p>
         </article>
-        <article class="tip-card" style="--tip-accent:var(--co-oos)">
+        <article class="tip-card accent-oos">
           <h4>Keep their ship in your cannon arc</h4>
           <p>Steer so your cannon side faces the enemy while their bow or stern faces you. Fixed deck landmarks vary by ship cosmetic, so watch the cannon itself.</p>
         </article>
@@ -1733,7 +1110,15 @@
 <section class="block" id="emissaries">
   <span class="eyebrow">High Seas · risk for reward</span>
   <h2>Emissaries: build the flag before you sell</h2>
-  <p class="lede emissary-intro">Buy a company's <span class="iref" data-ref="#img-licence" data-cap="Emissary Licence" data-sub="One-time 20,000 g purchase for most companies">Emissary Licence</span> once, then vote at its table whenever you start a High Seas session. Company work raises the flag from Grade&nbsp;I to V. A taller flag pays more, but tells other crews you probably have loot.</p>
+  <p class="lede emissary-intro">Buy a company's <button type="button" class="iref" data-preview="guide-assets/tips/licence.png" data-cap="Emissary Licence" data-sub="One-time 20,000 g purchase for most companies">Emissary Licence</button> once, then vote at its table whenever you start a High Seas session. Company work raises the flag from Grade&nbsp;I to V. A taller flag pays more, but tells other crews you probably have loot.</p>
+
+  <article class="visual-tip emissary-table-tip">
+    <img class="zoomable-guide-image" src="guide-assets/tips/emissary-table.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="Gold Hoarders Emissary Table with wooden ship models" data-sub="Each model represents an active Gold Hoarders emissary crew">
+    <div class="visual-tip__body">
+      <h3>Count the ships before you raise a flag</h3>
+      <p>Each small wooden ship on a company's Emissary Table represents 1 active crew for that company on the server. Check the tables before choosing your route.</p>
+    </div>
+  </article>
 
   <div class="grade-track" role="group" aria-label="Standard company emissary reward multipliers">
     <div class="grade"><small>Grade I</small><strong>1×</strong><span>Base reward</span></div>
@@ -1749,7 +1134,7 @@
   </div>
 
   <div class="emissary-grid">
-    <article class="emissary-card" style="--co:var(--co-gh)">
+    <article class="emissary-card theme-gh">
       <h3>Gold Hoarders</h3>
       <p class="unlock">Rank 15 · Raise beside the green-and-gold tent</p>
       <p><b>Build grade:</b> complete treasure maps, riddles, and vault steps; pick up Gold Hoarder chests and artefacts for the first time.</p>
@@ -1757,7 +1142,7 @@
       <p class="grade-five"><b>Grade V:</b> claim 4 treasure maps loaded with high-value chests.</p>
     </article>
 
-    <article class="emissary-card" style="--co:var(--co-oos)">
+    <article class="emissary-card theme-oos">
       <h3>Order of Souls</h3>
       <p class="unlock">Rank 15 · Raise beside the purple mystic's tent</p>
       <p><b>Build grade:</b> finish bounty maps, defeat captains, and collect bounty skulls. Fort captain waves also help.</p>
@@ -1765,7 +1150,7 @@
       <p class="grade-five"><b>Grade V:</b> claim 4 bounty maps with valuable skull targets.</p>
     </article>
 
-    <article class="emissary-card" style="--co:var(--co-ma)">
+    <article class="emissary-card theme-ma">
       <h3>Merchant Alliance</h3>
       <p class="unlock">Rank 15 · Raise beside the dockside merchant</p>
       <p><b>Build grade:</b> progress deliveries and Lost Shipment voyages; collect and load cargo, animals, commodities, and resource crates.</p>
@@ -1773,7 +1158,7 @@
       <p class="grade-five"><b>Grade V:</b> claim 2 cargo maps with 6 delivery crates.</p>
     </article>
 
-    <article class="emissary-card" style="--co:var(--co-hc)">
+    <article class="emissary-card theme-hc">
       <h3>The Hunter's Call</h3>
       <p class="unlock">Rank 15 · Raise at a Hunter's Call table</p>
       <p><b>Build grade:</b> fish, cook meat, hunt sea creatures, and collect Hunter's Call treasure. Store catches until the flag is valuable.</p>
@@ -1781,7 +1166,7 @@
       <p class="grade-five"><b>Grade V:</b> Ancient Megalodons appear on your map instead of an Emissary Quest.</p>
     </article>
 
-    <article class="emissary-card" style="--co:var(--co-af)">
+    <article class="emissary-card theme-af">
       <h3>Athena's Fortune</h3>
       <p class="unlock">Pirate Legend · Raise beside the Mysterious Stranger</p>
       <p><b>Build grade:</b> progress Athena voyages, collect Athena treasure, and defeat emergent captains or guardians.</p>
@@ -1789,7 +1174,7 @@
       <p class="grade-five"><b>Grade V:</b> claim a 2-stage Athena quest ending with an Ashen Chest of Legends.</p>
     </article>
 
-    <article class="emissary-card" style="--co:var(--co-rb)">
+    <article class="emissary-card theme-rb">
       <h3>Reaper's Bones</h3>
       <p class="unlock">No rank requirement · Raise at a Reaper shrine</p>
       <p><b>Build grade:</b> steal and collect mixed treasure, hunt rival emissaries, and take broken flags. Sell only at Reaper's Hideout.</p>
@@ -1797,7 +1182,7 @@
       <p class="grade-five"><b>Grade V:</b> see every other emissary ship as a shadow on your map.</p>
     </article>
 
-    <article class="emissary-card" style="--co:var(--teal)">
+    <article class="emissary-card theme-teal">
       <h3>Guild Emissary</h3>
       <p class="unlock">Level 15 Guild · Pledged ship · Raise at the Sovereigns</p>
       <p><b>Build grade:</b> collect and sell most kinds of treasure while sailing for your Guild. This is flexible but pays smaller bonuses.</p>
@@ -1819,20 +1204,20 @@
 
     <div class="map-gallery">
       <figure class="map-card">
-        <img src="guide-assets/quests/merchant-cargo-crate.jpg" alt="Sea of Thieves map table" width="900" height="506">
+        <img src="guide-assets/quests/merchant-cargo-crate.jpg" alt="Sea of Thieves map table" width="900" height="506" loading="lazy" decoding="async">
         <figcaption class="cap"><b>The map table</b> Below deck on every ship. Your vessel is a white-outlined ship icon; a dashed wake shows your path.</figcaption>
       </figure>
       <figure class="map-card">
-        <img src="guide-assets/map/sea-of-thieves-world-map.jpg" alt="Sea of Thieves world map" width="640" height="466">
+        <img src="guide-assets/map/sea-of-thieves-world-map.jpg" alt="Sea of Thieves world map" width="640" height="466" loading="lazy" decoding="async">
         <figcaption class="cap"><b>World map</b> Outposts sit on settled islands with docks — denser than wild islands. Use grid letters/numbers (e.g. F-7).</figcaption>
       </figure>
       <figure class="map-card">
-        <img src="guide-assets/quests/x-marks-the-spot-treasure-map.jpg" alt="X marks the spot quest map" width="640" height="356">
-        <figcaption class="cap"><b>Quest map · X marks</b> In your quest radial — match the island silhouette on the <span class="iref" data-ref="#img-maptable" data-cap="Map table">map table</span>, dig each red X.</figcaption>
+        <img src="guide-assets/quests/x-marks-the-spot-treasure-map.jpg" alt="X marks the spot quest map" width="640" height="356" loading="lazy" decoding="async">
+        <figcaption class="cap"><b>Quest map · X marks</b> In your quest radial — match the island silhouette on the <button type="button" class="iref" data-preview="guide-assets/quests/merchant-cargo-crate.jpg" data-cap="Map table">map table</button>, dig each red X.</figcaption>
       </figure>
       <figure class="map-card">
-        <img src="guide-assets/quests/riddle-map-parchment.jpg" alt="Riddle map" width="640" height="338">
-        <figcaption class="cap"><b>Riddle map</b> Landmark clues on large islands — not pins on the world map. Raise a <span class="iref" data-ref="#img-lantern" data-cap="Lantern">lantern</span> when asked.</figcaption>
+        <img src="guide-assets/quests/riddle-map-parchment.jpg" alt="Riddle map" width="640" height="338" loading="lazy" decoding="async">
+        <figcaption class="cap"><b>Riddle map</b> Landmark clues on large islands — not pins on the world map. Raise a <button type="button" class="iref" data-preview="guide-assets/fight/lantern.jpg" data-cap="Lantern">lantern</button> when asked.</figcaption>
       </figure>
     </div>
 
@@ -1840,33 +1225,33 @@
     <p class="lede">Every sell-town. Tap a card for a larger photo.</p>
     <div class="outpost-grid" id="outpost-grid">
       <button type="button" class="outpost-btn" data-outpost="sanctuary" aria-label="Sanctuary Outpost">
-        <img src="guide-assets/map/sanctuary-outpost.jpg" alt="Sanctuary Outpost" width="900" height="506">
+        <img src="guide-assets/map/sanctuary-outpost.jpg" alt="Sanctuary Outpost" width="900" height="506" loading="lazy" decoding="async">
         <span class="obody"><b>Sanctuary Outpost</b><span>F-7 · Shores of Plenty</span></span>
       </button><button type="button" class="outpost-btn" data-outpost="port_merrick" aria-label="Port Merrick">
-        <img src="guide-assets/map/port-merrick.jpg" alt="Port Merrick" width="640" height="360">
+        <img src="guide-assets/map/port-merrick.jpg" alt="Port Merrick" width="640" height="360" loading="lazy" decoding="async">
         <span class="obody"><b>Port Merrick</b><span>D-10 · Shores of Plenty</span></span>
       </button><button type="button" class="outpost-btn" data-outpost="plunder" aria-label="Plunder Outpost">
-        <img src="guide-assets/map/sanctuary-outpost.jpg" alt="Plunder Outpost" width="900" height="506">
+        <img src="guide-assets/map/sanctuary-outpost.jpg" alt="Plunder Outpost" width="900" height="506" loading="lazy" decoding="async">
         <span class="obody"><b>Plunder Outpost</b><span>J-18 · Ancient Isles</span></span>
       </button><button type="button" class="outpost-btn" data-outpost="ancient_spire" aria-label="Ancient Spire Outpost">
-        <img src="guide-assets/map/sanctuary-outpost.jpg" alt="Ancient Spire Outpost" width="900" height="506">
+        <img src="guide-assets/map/sanctuary-outpost.jpg" alt="Ancient Spire Outpost" width="900" height="506" loading="lazy" decoding="async">
         <span class="obody"><b>Ancient Spire Outpost</b><span>Q-17 · Ancient Isles</span></span>
       </button><button type="button" class="outpost-btn" data-outpost="galleons_grave" aria-label="Galleon's Grave Outpost">
-        <img src="guide-assets/map/sanctuary-outpost.jpg" alt="Galleon's Grave Outpost" width="900" height="506">
+        <img src="guide-assets/map/sanctuary-outpost.jpg" alt="Galleon's Grave Outpost" width="900" height="506" loading="lazy" decoding="async">
         <span class="obody"><b>Galleon's Grave Outpost</b><span>R-8 · The Wilds</span></span>
       </button><button type="button" class="outpost-btn" data-outpost="dagger_tooth" aria-label="Dagger Tooth Outpost">
-        <img src="guide-assets/map/sanctuary-outpost.jpg" alt="Dagger Tooth Outpost" width="900" height="506">
+        <img src="guide-assets/map/sanctuary-outpost.jpg" alt="Dagger Tooth Outpost" width="900" height="506" loading="lazy" decoding="async">
         <span class="obody"><b>Dagger Tooth Outpost</b><span>M-8 · The Wilds</span></span>
       </button><button type="button" class="outpost-btn" data-outpost="morrows_peak" aria-label="Morrow's Peak Outpost">
-        <img src="guide-assets/map/sanctuary-outpost.jpg" alt="Morrow's Peak Outpost" width="900" height="506">
+        <img src="guide-assets/map/sanctuary-outpost.jpg" alt="Morrow's Peak Outpost" width="900" height="506" loading="lazy" decoding="async">
         <span class="obody"><b>Morrow's Peak Outpost</b><span>V-17 · Devil's Roar</span></span>
       </button>
     </div>
 
     <div class="almanac almanac-spaced">
-      <div class="entry"><b>Seaposts</b><p>Tiny stilt shops — <span class="iref" data-ref="#img-seapost" data-cap="A seapost">see a seapost</span>. Hunter's Call sells here. Zoom in between outposts.</p></div>
-      <div class="entry"><b>Reaper ships</b><p>A ship with a <span class="iref" data-ref="#img-rflag" data-cap="Reaper's Bones emissary flag">red Reaper emissary flag</span> shows on everyone's map. Sail away until you're ready.</p></div>
-      <div class="entry"><b>Dig spots</b><p>X marks live on the quest parchment, not the world map. Bring a <span class="iref" data-ref="#img-shovel" data-cap="Shovel">shovel</span>.</p></div>
+      <div class="entry"><b>Seaposts</b><p>Tiny stilt shops — <button type="button" class="iref" data-preview="guide-assets/tips/seapost.jpg" data-cap="A seapost">see a seapost</button>. Hunter's Call sells here. Zoom in between outposts.</p></div>
+      <div class="entry"><b>Reaper ships</b><p>A ship with a <button type="button" class="iref" data-preview="guide-assets/loot/broken-emissary-flag-g5.webp" data-cap="Reaper's Bones emissary flag">red Reaper emissary flag</button> shows on everyone's map. Sail away until you're ready.</p></div>
+      <div class="entry"><b>Dig spots</b><p>X marks live on the quest parchment, not the world map. Bring a <button type="button" class="iref" data-preview="guide-assets/tips/shovel.jpg" data-cap="Shovel">shovel</button>.</p></div>
     </div>
   </section>
 </section>
@@ -1887,11 +1272,10 @@
     </div>
     <div class="tip-grid">
       <article class="tip-card"><h4>Learn in Safer Seas</h4><p>Use the private mode to practise sailing and docking. Move to High Seas when reduced rewards and progression start holding you back.</p></article>
-      <article class="tip-card" style="--tip-accent:var(--co-ma)"><h4>Buy the supplies you lack</h4><p>Merchant Alliance traders sell full fruit and wood crates for 3,500&nbsp;g, cannonball crates for 5,000&nbsp;g, and mixed storage crates for 5,000&nbsp;g.</p></article>
-      <article class="tip-card" style="--tip-accent:var(--teal)"><h4>Turn on tap-to-interact</h4><p>Set <b>Reduce Hold to Interact</b> to On. One press starts the timer, which makes repairs, sails, and collecting supplies easier.</p><span class="setting">Settings → Gameplay → Input</span></article>
-      <article class="tip-card" style="--tip-accent:var(--co-oos)"><h4>Use a wider field of view</h4><p>Try 90 to 110 so you can see more deck and nearby threats. Higher values can reduce performance on slower hardware.</p><span class="setting">Settings → Graphics → Field of View</span></article>
-      <article class="tip-card" style="--tip-accent:var(--co-gh)"><h4>Raise model detail for distant loot</h4><p>Set Model Detail and Texture Detail to at least Rare. Rare already reaches the maximum useful render distance for most loot.</p><span class="setting">Settings → Graphics</span></article>
-      <article class="tip-card" style="--tip-accent:var(--co-rb)"><h4>Count emissaries before sailing</h4><p>Small wooden ships on each Emissary Table show how many crews represent that company on the server. Reaper shrines show active Reapers.</p></article>
+      <article class="tip-card accent-ma"><h4>Buy the supplies you lack</h4><p>Merchant Alliance traders sell full fruit and wood crates for 3,500&nbsp;g, cannonball crates for 5,000&nbsp;g, and mixed storage crates for 5,000&nbsp;g.</p></article>
+      <article class="tip-card accent-teal"><h4>Turn on tap-to-interact</h4><p>Set <b>Reduce Hold to Interact</b> to On. One press starts the timer, which makes repairs, sails, and collecting supplies easier.</p><span class="setting">Settings → Gameplay → Input</span></article>
+      <article class="tip-card accent-oos"><h4>Use a wider field of view</h4><p>Try 90 to 110 so you can see more deck and nearby threats. Higher values can reduce performance on slower hardware.</p><span class="setting">Settings → Graphics → Field of View</span></article>
+      <article class="tip-card accent-gh"><h4>Raise model detail for distant loot</h4><p>Set Model Detail and Texture Detail to at least Rare. Rare already reaches the maximum useful render distance for most loot.</p><span class="setting">Settings → Graphics</span></article>
     </div>
   </section>
 
@@ -1938,7 +1322,6 @@
       </div>
     </div>
     <div class="tip-grid">
-      <article class="tip-card" style="--tip-accent:var(--teal)"><h4>Dive only with an empty treasure deck</h4><p>A Voyage or Tall Tale dive moves you to a new server near its start. Normal treasure disappears, but resource crates stay. Diving also has an 8-minute cooldown.</p></article>
       <article class="tip-card"><h4>Sell before logging off</h4><p>Treasure does not carry into the next session. Sell it. Burying creates a map only for the current server and session.</p></article>
       <article class="tip-card"><h4>Recover a recent sink</h4><p>Your loot and map bundle float where the ship sank for a short time. Mark the area, sail back, and harpoon quickly before another crew finds it.</p></article>
       <article class="tip-card"><h4>Read mermaids correctly</h4><p>Your mermaid appears when you are far from your ship or after it sinks. A mermaid without blue smoke usually belongs to another pirate nearby.</p></article>
@@ -1956,9 +1339,8 @@
       </div>
     </div>
     <div class="tip-grid">
-      <article class="tip-card" style="--tip-accent:var(--seal)"><h4>Skull of Siren Song respawns</h4><p>Joining only gives a closer ship respawn when you sink near a Siren Song objective or quest item. It is not a general close-respawn switch.</p></article>
-      <article class="tip-card" style="--tip-accent:var(--seal)"><h4>Keg traps can kill both crews</h4><p>A trap loaded with a blunderbomb can trigger a nearby keg. Use that only on land or an enemy deck. Never keep the setup beside your own ladder.</p></article>
-      <article class="tip-card" style="--tip-accent:var(--seal)"><h4>Loose crates are weak cover</h4><p>A crate may catch a harpoon by accident, but it does not reliably protect a cannoneer. Keep cannon access clear and dodge the harpoon instead.</p></article>
+      <article class="tip-card accent-seal"><h4>Keg traps can kill both crews</h4><p>A trap loaded with a blunderbomb can trigger a nearby keg. Use that only on land or an enemy deck. Never keep the setup beside your own ladder.</p></article>
+      <article class="tip-card accent-seal"><h4>Loose crates are weak cover</h4><p>A crate may catch a harpoon by accident, but it does not reliably protect a cannoneer. Keep cannon access clear and dodge the harpoon instead.</p></article>
     </div>
     <div class="caution-box">
       <h4>Do not build your play around these</h4>
@@ -1973,263 +1355,15 @@
 </section>
 
 </section>
+</main>
 <footer>
   <p>Made for a brand-new pirate, July 2026. Game facts, prices and all imagery from the community-run <a href="https://seaofthieves.wiki.gg">Sea of Thieves Wiki (wiki.gg)</a>; see also the official <a href="https://www.seaofthieves.com/trading-companies">trading companies overview</a>. Prices are base (non-emissary) values and shift between seasons — when in doubt, trust the wiki over this chart. Sea of Thieves © Rare / Microsoft — images used here for personal learning reference.</p>
 </footer>
 
 </div>
 
-<div class="assets" aria-hidden="true">
-  <img id="img-goldskel" src="guide-assets/fight/gold-skeleton.jpg" alt="gold_skel" width="640" height="610">
+<div id="pop" role="status" aria-live="polite" hidden><img src="guide-assets/tips/tavern.jpg" width="420" height="235" alt="" loading="lazy" decoding="async"><div class="cap"><b></b><span></span></div></div>
 
-  <img id="img-blunderbomb" src="guide-assets/tips/blunderbomb.jpg" alt="blunderbomb" width="640" height="712">
-
-  <img id="img-eor" src="guide-assets/fight/eye-of-reach.jpg" alt="eor" width="640" height="640">
-
-  <img id="img-cutlass" src="guide-assets/fight/cutlass.jpg" alt="cutlass" width="640" height="640">
-
-  <img id="img-bucket" src="guide-assets/tips/bucket.jpg" alt="bucket" width="640" height="640">
-
-  <img id="img-firebomb" src="guide-assets/fight/firebomb.jpg" alt="firebomb" width="579" height="696">
-
-  <img id="img-blunder" src="guide-assets/fight/blunderbuss.jpg" alt="blunder" width="640" height="640">
-
-  <img id="img-pistol" src="guide-assets/tips/pistol.jpg" alt="pistol" width="200" height="200">
-
-  <img id="img-maptable" src="guide-assets/quests/merchant-cargo-crate.jpg" alt="Map table" width="900" height="506">
-  <img id="img-shovel" src="guide-assets/tips/shovel.jpg" alt="Shovel" width="200" height="200">
-  <img id="img-lantern" src="guide-assets/fight/lantern.jpg" alt="Lantern" width="200" height="200">
-  <img id="img-collectors" src="guide-assets/tips/collectors.jpg" alt="Collector's Chest" width="640" height="560">
-  <img id="img-wayfinder" src="guide-assets/tips/wayfinder.jpg" alt="Golden Wayfinder" width="500" height="380">
-  <img id="img-vaultkey" src="guide-assets/quests/x-marks-the-spot-treasure-map.jpg" alt="Treasure Vault Key" width="640" height="356">
-  <img id="img-bounty" src="guide-assets/quests/order-of-souls-bounty-skull.jpg" alt="Bounty skull" width="329" height="434">
-  <img id="img-fishing" src="guide-assets/quests/fishing-rod-from-sea-of-thieves.jpg" alt="Fishing Rod" width="200" height="200">
-  <img id="img-cargo" src="guide-assets/quests/merchant-cargo-crate.jpg" alt="Cargo crate" width="900" height="506">
-  <img id="img-windflag" src="guide-assets/tips/windflag.jpg" alt="Ship flag" width="640" height="594">
-
-  <img id="img-tavern" src="guide-assets/tips/tavern.jpg" alt="" width="420" height="235">
-  <img id="img-seapost" src="guide-assets/tips/seapost.jpg" alt="" width="420" height="236">
-  <img id="img-licence" src="guide-assets/tips/licence.png" alt="" width="176" height="176">
-</div>
-
-<div id="pop" hidden><img src="guide-assets/tips/tavern.jpg" width="420" height="235" alt=""><div class="cap"><b></b><span></span></div></div>
-
-<script>
-(function () {
-  var pop = document.getElementById('pop');
-  var popImg = pop.querySelector('img');
-  var popName = pop.querySelector('.cap b');
-  var popSub = pop.querySelector('.cap span');
-  var showTimer = null;
-  var pinned = null; // element that was tapped/clicked open
-
-  function hide() {
-    clearTimeout(showTimer);
-    showTimer = null;
-    pinned = null;
-    pop.classList.remove('on');
-    pop.hidden = true;
-  }
-
-  function place(target) {
-    var r = target.getBoundingClientRect();
-    pop.hidden = false;            // measurable, still transparent
-    var pw = pop.offsetWidth, ph = pop.offsetHeight;
-    var x = r.left + r.width / 2 - pw / 2;
-    x = Math.max(8, Math.min(x, window.innerWidth - pw - 8));
-    var y = r.top - ph - 10;       // prefer above
-    if (y < 8) y = Math.min(r.bottom + 10, window.innerHeight - ph - 8);
-    pop.style.left = x + 'px';
-    pop.style.top = Math.max(8, y) + 'px';
-    pop.classList.add('on');
-  }
-
-  function schedule(target, src, name, sub, delay) {
-    clearTimeout(showTimer);
-    showTimer = setTimeout(function () {
-      popImg.src = src;
-      popImg.alt = name;
-      popName.textContent = name;
-      popSub.textContent = sub;
-      popSub.style.display = sub ? '' : 'none';
-      place(target);
-    }, delay);
-  }
-
-  function attach(el, getData) {
-    el.addEventListener('mouseenter', function () {
-      if (pinned) return;
-      var d = getData();
-      schedule(el, d.src, d.name, d.sub, 250);
-    });
-    el.addEventListener('mouseleave', function () {
-      if (!pinned) hide();
-    });
-    el.addEventListener('click', function (e) {
-      if (el.classList.contains('iref')) e.preventDefault();
-      if (pinned === el) { hide(); return; }
-      pinned = null;
-      var d = getData();
-      schedule(el, d.src, d.name, d.sub, 0);
-      pinned = el;
-    });
-  }
-
-  document.querySelectorAll('.loot li').forEach(function (li) {
-    var img = li.querySelector('img');
-    var nm = li.querySelector('.nm');
-    var price = li.querySelector('.price');
-    attach(li, function () {
-      return {
-        src: img.getAttribute('data-preview') || img.src,
-        name: nm ? nm.textContent : (img.alt || ''),
-        sub: price ? price.textContent : ''
-      };
-    });
-  });
-
-  document.querySelectorAll('.fight-card .shots img, .zoomable-guide-image').forEach(function (img) {
-    img.tabIndex = 0;
-    img.setAttribute('role', 'button');
-    img.setAttribute('aria-label', 'Enlarge ' + (img.alt || 'fight reference'));
-    attach(img, function () {
-      return {
-        src: img.getAttribute('data-preview') || img.src,
-        name: img.alt || 'Fight reference',
-        sub: img.getAttribute('data-sub') || 'Enemy and weapon reference'
-      };
-    });
-    img.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        img.click();
-      }
-    });
-  });
-
-  document.querySelectorAll('.iref').forEach(function (el) {
-    var ref = document.querySelector(el.getAttribute('data-ref'));
-    if (!ref) return;
-    attach(el, function () {
-      return {
-        src: ref.getAttribute('data-preview') || ref.src,
-        name: el.getAttribute('data-cap') || el.textContent,
-        sub: el.getAttribute('data-sub') || ''
-      };
-    });
-  });
-
-  window.addEventListener('scroll', hide, { passive: true });
-  window.addEventListener('resize', hide);
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') hide(); });
-  document.addEventListener('click', function (e) {
-    if (pinned && !pinned.contains(e.target)) hide();
-  });
-})();
-
-
-(function () {
-  var nav = document.getElementById('pages-nav');
-  if (!nav) return;
-  var links = nav.querySelectorAll('a[data-page]');
-  var pages = document.querySelectorAll('.page[data-page]');
-  var rail = nav.querySelector('.pages-nav__rail');
-
-  function show(id) {
-    pages.forEach(function (p) {
-      p.classList.toggle('active', p.getAttribute('data-page') === id);
-    });
-    links.forEach(function (link) {
-      var isActive = link.getAttribute('data-page') === id;
-      link.classList.toggle('active', isActive);
-      if (isActive) {
-        link.setAttribute('aria-current', 'page');
-        if (rail) {
-          var left = link.offsetLeft - (rail.clientWidth - link.offsetWidth) / 2;
-          var motion = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
-          rail.scrollTo({ left: Math.max(0, left), behavior: motion });
-        }
-      } else {
-        link.removeAttribute('aria-current');
-      }
-    });
-    try { history.replaceState(null, '', '#' + id); } catch (e) {}
-    window.scrollTo(0, 0);
-  }
-
-  links.forEach(function (link) {
-    link.addEventListener('click', function (e) {
-      e.preventDefault();
-      show(link.getAttribute('data-page'));
-    });
-  });
-
-  // In-page company chips should jump to companies page first
-  document.querySelectorAll('nav.chips a[href^="#"]').forEach(function (a) {
-    a.addEventListener('click', function (e) {
-      var id = a.getAttribute('href').slice(1);
-      var target = document.getElementById(id);
-      if (!target) return;
-      var page = target.closest('.page[data-page]');
-      if (page) {
-        e.preventDefault();
-        show(page.getAttribute('data-page'));
-        setTimeout(function () {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 50);
-      }
-    });
-  });
-
-  var hash = (location.hash || '#home').slice(1);
-  if (![...pages].some(function (p) { return p.getAttribute('data-page') === hash; })) hash = 'home';
-  show(hash);
-  setTimeout(function () { window.scrollTo(0, 0); }, 0);
-})();
-
-
-(function () {
-  var grid = document.getElementById('outpost-grid');
-  if (!grid) return;
-  grid.querySelectorAll('.outpost-btn').forEach(function (btn) {
-    btn.addEventListener('click', function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      var imgEl = btn.querySelector('img');
-      var title = btn.querySelector('b');
-      var sub = btn.querySelector('.obody span');
-      var pop = document.getElementById('pop');
-      if (!pop || !imgEl) return;
-      pop.querySelector('img').src = imgEl.src;
-      pop.querySelector('img').alt = imgEl.alt;
-      pop.querySelector('.cap b').textContent = title ? title.textContent : imgEl.alt;
-      var subEl = pop.querySelector('.cap span');
-      subEl.textContent = sub ? sub.textContent : '';
-      subEl.style.display = subEl.textContent ? '' : 'none';
-      pop.hidden = false;
-      var r = btn.getBoundingClientRect();
-      var pw = pop.offsetWidth, ph = pop.offsetHeight;
-      var x = Math.max(8, Math.min(r.left + r.width / 2 - pw / 2, window.innerWidth - pw - 8));
-      var y = r.top - ph - 10;
-      if (y < 8) y = Math.min(r.bottom + 10, window.innerHeight - ph - 8);
-      pop.style.left = x + 'px';
-      pop.style.top = Math.max(8, y) + 'px';
-      pop.classList.add('on');
-      // mark as pinned via dataset so outside-click handler can clear
-      pop.dataset.pinnedOutpost = '1';
-      btn.focus();
-    });
-  });
-  document.addEventListener('click', function (e) {
-    var pop = document.getElementById('pop');
-    if (!pop || pop.dataset.pinnedOutpost !== '1') return;
-    if (e.target.closest && e.target.closest('.outpost-btn')) return;
-    pop.classList.remove('on');
-    pop.hidden = true;
-    delete pop.dataset.pinnedOutpost;
-  });
-})();
-
-</script>
+<script src="guide-assets/guide.js" defer></script>
 </body>
 </html>
