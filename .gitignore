@@ -1,0 +1,6 @@
+# Local agent settings
+.claude/settings.local.json
+
+# Generated caches and temporary backups
+_loot_icon_cache/
+*.bak

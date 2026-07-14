@@ -1,0 +1,14 @@
+---
+description: Always apply installed frontend design/dev skills when changing UI
+alwaysApply: true
+---
+
+# Frontend skills by default
+
+When creating or changing any frontend/UI in this project (HTML, CSS, layout, visuals, the Sea of Thieves guide, or future web UI), follow these skills even if the user only asks for a feature and does not say "redesign" or "audit":
+
+1. Read and apply `~/.agents/skills/frontend-design/SKILL.md`
+2. Read and apply `~/.agents/skills/web-design-guidelines/SKILL.md`
+3. If the change involves React/Next, also read and apply `~/.agents/skills/vercel-react-best-practices/SKILL.md`
+
+Treat guide/HTML/CSS edits as frontend work. Do not skip these skills unless the user explicitly opts out.
